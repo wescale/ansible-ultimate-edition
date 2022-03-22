@@ -1,0 +1,6 @@
+tags
+*.secret
+*.secrets
+tags.*
+docs/build
+.direnv
