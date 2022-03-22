@@ -6,8 +6,8 @@
 # -- Project information -----------------------------------------------------
 #
 project = 'hashistack'
-copyright = '2022, WeScale.fr'
-author = 'WeScale.fr'
+copyright = '2022, www.wescale.fr'
+author = 'www.wescale.fr'
 release = '0.0.1'
 #
 # -- General configuration ---------------------------------------------------
