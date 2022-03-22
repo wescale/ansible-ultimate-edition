@@ -39,8 +39,12 @@ html_logo = "static/ansible_logo.png"
 # -- Ansible role inline doc extraction --------------------------------------
 #
 import os, sys
+
+direnv_python_libs = os.getenv("DIRENV_PYTHON_LIBS_DIR")
+
 try:
-    sys.path.insert(0, os.getenv("DIRENV_PYTHON_LIBS_DIR"))
+    if direnv_python_libs:
+        sys.path.insert(0, direnv_python_libs)
     import yaml2rst
 except ImportError:
     raise ImportError("yaml2rst import error")
@@ -50,8 +54,7 @@ if not roles_src_path:
     roles_src_path = "../../roles"
 roles_doc_path = "reference/role"
 
-
-ansible_roles = list()
+ansible_roles = []
 
 if os.path.exists(roles_src_path):
     ansible_roles = os.listdir(roles_src_path)
