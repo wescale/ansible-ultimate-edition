@@ -7,9 +7,7 @@
 :maxdepth: 1
 :hidden:
 
-exercises/__main.md
+basics/__index.md
+exercises/__index.md
 ```
 
-This [documentation structure](https://documentation.divio.com) is borrowed from [Daniele Procida](https://twitter.com/evildmp)'s presentation at PyCon Australia: "What nobody tells you about documentation".
-
-Blessed be he for his teachings.
