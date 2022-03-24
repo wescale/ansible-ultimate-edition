@@ -9,57 +9,41 @@ prepare-debian:
 	@sudo apt-get install direnv python3 python3-venv sshpass
 
 header:
-	@[ -n "${AUE_WORKSPACE}" ] || (echo "Please set the AUE_WORKSPACE environment variable." && exit 1)
-	@echo "**************************** HASHISTACK PROJECT ********************************"
-	@echo ""
-	@echo "CURRENT HASHISTACK WORKSPACE => ${AUE_WORKSPACE}"
-	@echo ""
-	@echo $(separator)
-
-header-env:
-	@echo "**************************** HASHISTACK PROJECT ********************************"
+	@echo "************************ ANSIBLE ULTIMATE EDITION ******************************"
 	@echo ""
 	@echo $(separator)
 
 .PHONY: env
 env-desc = "Build local workspace environment"
-env: header-env
-	@echo ""
-	@echo $(separator)
+log-file = "${PWD}/.direnv/make-env.log"
+env: header
 	@echo "==> $(env-desc)"
 	@echo $(separator)
-	@pip3 install -U pip --no-cache-dir --quiet &&\
-	echo "[  OK  ] PIP3" || \
-	echo "[FAILED] PIP3"
 
-	@pip3 install -U wheel --no-cache-dir --quiet &&\
-	echo "[  OK  ] WHEEL" || \
-	echo "[FAILED] WHEEL"
+	@[ -d "${PWD}/.direnv" ] || (echo "Directory not found: ${PWD}/.direnv" && exit 1)
+	@pip3 install -U pip wheel setuptools --no-cache-dir 2>&1 > $(log-file) &&\
+	echo "[  OK  ] PIP + WHEEL + SETUPTOOLS" || \
+	(echo "[FAILED] PIP + WHEEL + SETUPTOOLS" && echo "Full log: $(log-file)")
 
-	@pip3 install -U setuptools --no-cache-dir --quiet &&\
-	echo "[  OK  ] SETUPTOOLS" || \
-	echo "[FAILED] SETUPTOOLS"
-
-	@pip3 install -U --no-cache-dir --quiet -r ${PWD}/requirements.txt &&\
-	echo "[  OK  ] REQUIREMENTS" || \
-	echo "[FAILED] REQUIREMENTS"
+	@pip3 install -U --no-cache-dir -r ${PWD}/requirements.txt 2>&1 >> $(log-file) &&\
+	echo "[  OK  ] PIP REQUIREMENTS" || \
+	(echo "[FAILED] PIP REQUIREMENTS" && echo "Full log: $(log-file)")
 	
-	@pip3 install -U --no-cache-dir --quiet -r ${PWD}/docs/requirements.txt &&\
+	@pip3 install -U --no-cache-dir -r ${PWD}/docs/requirements.txt 2>&1 >> $(log-file) &&\
 	echo "[  OK  ] DOC REQUIREMENTS" || \
-	echo "[FAILED] DOC REQUIREMENTS"
+	(echo "[FAILED] DOC REQUIREMENTS" && echo "Full log: $(log-file)")
 
-	@echo ""
-	@echo "************************* IMPORT EXTERNAL ANSIBLE ROLES ************************"
-	ansible-galaxy collection install -fr requirements.yml
-
+	@ansible-galaxy collection install -fr ${PWD}/requirements.yml 2>&1 >> $(log-file) &&\
+	echo "[  OK  ] ANSIBLE-GALAXY REQUIREMENTS" || \
+	(echo "[FAILED] ANSIBLE-GALAXY REQUIREMENTS" && echo "Full log: $(log-file)")
 
 .PHONY: doc-desc
-doc-desc = "Build project static html documentation"
+doc-desc = "==> Build project static html documentation"
 doc:
-	@echo ""
 	@echo $(doc-desc)
 	@echo $(separator)
 	@cd docs &&	make html
+	@echo ""
 	@echo $(separator)
 	@echo "Static documentation exported:"
 	@echo "  file://${PWD}/docs/build/html/index.html"
@@ -67,9 +51,8 @@ doc:
 
 
 .PHONY: clean-doc-desc
-clean-doc-desc = "Clean project static html documentation"
+clean-doc-desc = "==> Clean project static html documentation"
 clean-doc:
-	@echo ""
 	@echo $(clean-doc-desc)
 	@echo $(separator)
 	@cd docs && make clean

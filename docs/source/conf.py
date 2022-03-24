@@ -5,7 +5,7 @@
 #
 # -- Project information -----------------------------------------------------
 #
-project = 'hashistack'
+project = 'Ansible Ultimate Edition'
 copyright = '2022, www.wescale.fr'
 author = 'www.wescale.fr'
 release = '0.0.1'
