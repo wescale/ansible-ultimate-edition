@@ -7,12 +7,6 @@ La diversité des systèmes est le premier puzzle à résoudre pour permettre à
 L'approche préconisée diminue la surface de frottement avec le système au maximum pour s'attaquer très tôt aux éventuels
 problèmes et ne plus avoir á y penser par la suite.
 
-```{admonition} Note
-:class: important
-
-Ce guide a été validé sur un système Debian Bullseye. Il se peut que vous ayez besoin d'adapter quelques éléments
-pour pouvoir reproduire sur d'autres sytèmes.
-```
 
 ## Installation dans un virtualenv de travail
 
@@ -21,15 +15,8 @@ pour chacun de vos projets. Cela permet d'isoler les dépendances projet du syst
 et de pouvoir travailler avec plusieurs versions fixes d'Ansible en parrallèle. 
 
 Il existe de nombreuses manières de réaliser cette gestion de virtualenv. Je vous livre ici une méthode qui 
-est robuste et nécessite peu d'expertise Python.
-
-### Prérequis
-
-Pour que tout se passe comme prévu, vous aurez besoin de:
-
-* Python > 3.7.3 et les modules venv
-* direnv, qui va nous faciliter la vie pour gérer le virtualenv
-* make, encore une fois pour se faciliter la vie
+est robuste et nécessite peu d'expertise Python et un minimum de prérequis
+(comprendre: on n'a pas réussi à faire moins jusqu'ici).
 
 ```{admonition} Mise en pratique
 :class: todo
