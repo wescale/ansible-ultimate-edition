@@ -10,10 +10,10 @@ pour pouvoir reproduire sur d'autres sytèmes.
 
 ## Prérequis
 
-Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail:
+Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail :
 
-* Python > 3.7.3 et les modules venv et pip
-* direnv
+* Python > 3.7.3 et les modules venv et pip ;
+* direnv.
 
 Il y a trop de configurations de systèmes pour pouvoir couvrir tous les cas ici. Notre cas de référence sur 
 Debian Bullseye n'est pas tiré de nulle part : cette configuration permet à de nombreux professionnels de gagner leur vie
@@ -71,7 +71,7 @@ Direnv active automatiquement le virtualenv qu'il crée lorsque votre shell se t
 
 ## Installation d'Ansible
 
-Maintenant que notre virtualenv est prêt, une simple commande nous permet d'y installer Ansible:
+Maintenant que notre virtualenv est prêt, une simple commande nous permet d'y installer Ansible :
 
 ```shell session
 $ pip install ansible-core 
@@ -86,7 +86,7 @@ répond est situé dans le virtualenv créé juste avant.
 
 ## Ligne d'arrivée
 
-Félicitations vous venez d'installer Ansible dans un virtualenv. Si vous lancez la commande `which ansible` 
+Félicitations, vous venez d'installer Ansible dans un virtualenv. Si vous lancez la commande `which ansible` 
 depuis le répertoire `~/ansible-workspaces`, vous pourrez observer que le binaire qui
 répond est situé dans le virtualenv créé juste avant.
 
