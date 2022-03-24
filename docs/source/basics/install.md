@@ -49,6 +49,8 @@ C'est un chemin respectable et vous trouverez en bas de page un guide pour vous 
 Nous ne développons pas cette technique ici, dans la mesure où elle implique des connaissances supplémentaires et que nous visons
 une approche très Lean d'Ansible.
 
+----
+
 ```{admonition} Approfondir
 :class: seealso
 
