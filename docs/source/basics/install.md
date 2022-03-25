@@ -58,9 +58,4 @@ une approche très Lean d'Ansible.
 * [Guide de construction de conteneur de travail](https://dev.to/cloudskills/using-containers-for-ansible-development-2n9n)
 ```
 
-python jinja yaml ssh
-transition playbook vers roles tasks->tasks/main.yml
-
-chmod+x des playbook
-
 

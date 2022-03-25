@@ -1,4 +1,4 @@
-# Initiation
+# Les bases
 
 Premier chapitre des exercices où l'on vient configurer le poste de travail pour se placer dans les 
 meilleures conditions pour travailler.
