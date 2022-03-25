@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 #
 project = 'Ansible Ultimate Edition'
-copyright = '2022, www.wescale.fr'
+copyright = '2022, <a href="https://python.org/">www.wescale.fr</a>'
 author = 'www.wescale.fr'
 release = '0.0.1'
 #
