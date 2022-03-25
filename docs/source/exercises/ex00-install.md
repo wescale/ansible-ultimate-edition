@@ -1,11 +1,16 @@
-# Ex00 Installation
+# Ex00 - Installation
 
+```{admonition} Objectif
+:class: hint
+
+Installation d'Ansible sur un poste de travail.
+```
 
 ```{admonition} Note
 :class: important
 
 Cet exercice a été validé sur un système **Debian Bullseye**. Il se peut que vous ayez besoin d'adapter quelques éléments
-pour pouvoir reproduire sur d'autres sytèmes.
+pour pouvoir reproduire sur d'autres sytèmes (les contributions sont les bienvenues).
 ```
 
 ## Prérequis
