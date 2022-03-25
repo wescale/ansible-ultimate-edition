@@ -10,7 +10,7 @@ Ansible est un outil d'automatisation très versatile vous pouvez en tirer avant
 
 
 ```{admonition} Perle de sagesse
-:class: important
+:class: tip
 
 Ansible vous permet d'écrire des scripts qui s'exécutent à travers tout votre SI sans restriction.
 ```
