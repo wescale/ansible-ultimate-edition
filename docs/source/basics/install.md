@@ -54,8 +54,8 @@ une approche très Lean d'Ansible.
 ```{admonition} Approfondir
 :class: seealso
 
-* [Doc officielle : Installation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installation-guide)
-* [Guide de construction de conteneur de travail](https://dev.to/cloudskills/using-containers-for-ansible-development-2n9n)
+* [Documentation Ansible - Installation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installation-guide)
+* [Guide de construction de conteneur de travail Ansible](https://dev.to/cloudskills/using-containers-for-ansible-development-2n9n)
 ```
 
 
