@@ -8,7 +8,6 @@
 :hidden:
 
 basics/__index.md
-organization/__index.md
 testing/__index.md
 exercises/__index.md
 ```

@@ -1,4 +1,4 @@
-# Ex00 - Installation
+# Ex00 - Installer
 
 ```{admonition} Objectif
 :class: hint
@@ -28,7 +28,7 @@ Pour notre cas de référence donc, atteindre ces prérequis passe par le lancem
 
 ```shell session
 $ sudo apt update 
-$ sudo apt install direnv python3 python3-pip python3-venv
+$ sudo apt install direnv python3 python3-pip python3-venv -y
 $ echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 $ source ~/.bashrc
 ```

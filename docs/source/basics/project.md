@@ -1,4 +1,4 @@
-# Organiser un projet
+# Organisation de projet
 
 ## Fichiers et répertoires
 
@@ -30,9 +30,9 @@ d'environnement**. On peut de cette façon configurer Ansible, mais aussi à :
 * helm
 * et bien d'autres...
 
-C'est une méthode de travail fiable et robuste, pour peu qu'on soit un peu aidé. C'est aussi un aspects qui nous a poussé à 
+C'est une méthode de travail fiable et pratique, pour peu qu'on soit un peu aidé. C'est aussi un des aspects qui nous a poussé à 
 choisir `direnv` pour la gestion de virtualenv décrite dans la section [](install.md). `Direnv` charge tout fichier 
-`.envrc` se trouvant dans un répertoire dans lequel on se place, mais il remet l'environnement à l'identique dès qu'on 
+`.envrc` se trouvant dans un répertoire dans lequel on se place, mais il remet l'environnement à son état d'origine dès qu'on 
 en sort. Il n'y a donc plus de risque d'oublier une variable d'environnement en changeant de projet et qu'elle vienne 
 impacter un autre projet.
 

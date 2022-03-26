@@ -1,4 +1,4 @@
-# Ex01 - Création de projet
+# Ex01 - Créer un projet
 
 ```{admonition} Objectif
 :class: hint
@@ -10,19 +10,104 @@ Création d'un projet Ansible vierge.
 
 Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail:
 
-* Python > 3.7.3 et les modules venv et pip
-* direnv
+* [le premier exercice](ex00-install.md)
+* Git
 
-Il y a trop de configurations de systèmes pour pouvoir couvrir tous les cas ici. Notre cas de référence sur 
-Debian Bullseye n'est pas tiré de nulle part : cette configuration permet à de nombreux professionnels de gagner leur vie
-en étant productif au quotidien (Debian sur laptop, aujourd'hui ce n'est pas un problème).
-
-Pour notre cas de référence donc, atteindre ces prérequis passe par le lancement des commandes suivantes :
+Pour notre cas de référence (Debian Bullseye), atteindre ces prérequis passe par le lancement des commandes suivantes :
 
 ```shell session
 $ sudo apt update 
-$ sudo apt install direnv python3 python3-pip python3-venv
-$ echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
-$ source ~/.bashrc
+$ sudo apt install git -y
 ```
 
+## Création de la structure
+
+Pour disposer de notre installation locale d'Ansible, nous devons nous placer dans le répertoire
+contenant le virtualenv géré par `direnv` :
+
+```bash session
+$ cd ~/ansible-workspaces
+```
+
+Puis nous pouvons nous appuyer sur la commande `ansible-galaxy` pour initier la structure de notre projet :
+
+```bash session
+$ ansible-galaxy collection init ultimate.training
+- Collection ultimate.training was created successfully
+
+$ cd ultimate/training
+
+$ tree
+.
+├── docs
+├── galaxy.yml
+├── plugins
+│   └── README.md
+├── README.md
+└── roles
+
+3 directories, 3 files
+```
+
+On peut voir que `ansible-galaxy` a créé le minimum, à nous de remplir le reste pour obtenir un espace de travail complet.
+
+
+```bash session
+$ mkdir -p playbooks/group_vars group_vars host_vars
+mkdir: création du répertoire 'playbooks'
+mkdir: création du répertoire 'playbooks/group_vars'
+mkdir: création du répertoire 'group_vars'
+mkdir: création du répertoire 'host_vars'
+
+$ touch playbooks/group_vars/all.yml group_vars/all.yml host_vars/.gitkeep roles/.gitkeep docs/.gitkeep inventory
+
+$ tree -a
+.
+├── docs
+├── galaxy.yml
+├── group_vars
+│   └── all.yml
+├── host_vars
+│   └── .gitkeep
+├── inventory
+├── playbooks
+│   └── group_vars
+│       └── all.yml
+├── plugins
+│   └── README.md
+├── README.md
+└── roles
+
+7 directories, 7 files
+```
+
+Nous avons maintenant un cadre de travail qui correspond à nos attentes, nous pouvons l'encadrer par une gestion
+de version :
+
+
+```bash session
+$ pwd
+/home/user/ansible-workspaces/ultimate/training
+
+$ git init
+Dépôt Git vide initialisé dans /home/user/ansible-workspaces/ultimate/training/.git/
+
+$ git add .
+$ git commit -am "ultimate init"
+[main (commit racine) df65334] ultimate init
+ 7 files changed, 96 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 galaxy.yml
+ create mode 100644 group_vars/all.yml
+ create mode 100644 host_vars/.gitkeep
+ create mode 100644 inventory
+ create mode 100644 playbooks/group_vars/all.yml
+ create mode 100644 plugins/README.md
+```
+
+## Ligne d'arrivée
+
+Félicitations vous avez créé votre premier projet Ansible normé. Libre à vous de lancer quelques commandes de plus 
+pour venir lié votre dépôt local Git avec une plateforme centrale comme [Github](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github) ou [Gitlab](https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html#add-a-remote).
+
+Nous vous encourageons à poursuivre les exercices pour compléter le premier chapitre, qui constitut une unité.
