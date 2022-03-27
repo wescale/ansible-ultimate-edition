@@ -68,6 +68,45 @@ Dès que nous modifions le fichier `.envrc`, direnv nous met en garde car la ver
 par une commande `direnv allow .`. Une fois nos modifications terminées, on lance cette commande pour que direnv charge la
 version finale.
 
+
+## Configuration personnelle
+
+Sur cette base nous ajoutons notre configuration personnelle. Pour l'exemple nous prenons les 2 variables sensibles permettant de configurer notre accès aux API Scaleway : `SCW_ACCESS_KEY`, `SCW_SECRET_KEY` et `SCW_DEFAULT_ORGANIZATION_ID`.
+
+Tout d'abord nous rajoutons un fichier dans le `.gitignore` afin de ne pas faire d'erreur de manipulation :
+
+```bash session
+$ echo '.env.local' >> .gitignore
+```
+
+Ensuite nous pouvons remplir ce fichier avec nos exports de variables :
+
+
+```bash session
+$ echo 'export SCW_ACCESS_KEY="..."' >> .env.local
+
+$ echo 'export SCW_SECRET_KEY="..."' >> .env.local
+
+$ echo 'export SCW_DEFAULT_ORGANIZATION_ID="..."' >> .env.local
+```
+
+Enfin, pour assurer le chargement transparent de ce nouveau fichier, on intègre un bout de shell dans notre 
+`.envrc` qui sert de point d'accroche à direnv :
+
+```bash
+LOCAL_CONFIG="${PWD}/.env.local"
+if [ -e "${LOCAL_CONFIG}" ]; then
+  source ${LOCAL_CONFIG}
+fi
+```
+
+Une fois modifié le fichier `.envrc`, direnv nécessite que l'on revalide son chargement.
+
+
+```bash session
+$ direnv allow .
+```
+
 ## Ligne d'arrivée
 
 Félicitations, vous venez d'ajouter de la configuration Ansible à votre projet. Toutes les configurations communes à tous les

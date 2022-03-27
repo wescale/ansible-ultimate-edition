@@ -76,7 +76,7 @@ Cette convention ne coûte pas cher à mettre en place et n'ajoute aucune dépen
 ```{admonition} Mise en pratique
 :class: important
 
-[](/exercises/ex03-secrets.md)
+[](/exercises/ex02-config.md)
 ```
 
 ----

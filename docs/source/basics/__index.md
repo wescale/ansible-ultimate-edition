@@ -14,5 +14,6 @@ concepts.md
 use_cases.md
 install.md
 project.md
+dependencies.md
 ```
 

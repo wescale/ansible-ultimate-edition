@@ -1,4 +1,4 @@
-# Tests
+# Craftsmanship
 
 ```{toctree}
 :maxdepth: 1
