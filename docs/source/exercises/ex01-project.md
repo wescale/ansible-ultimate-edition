@@ -109,5 +109,3 @@ $ git commit -am "ultimate init"
 
 Félicitations vous avez créé votre premier projet Ansible normé. Libre à vous de lancer quelques commandes de plus 
 pour venir lié votre dépôt local Git avec une plateforme centrale comme [Github](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github) ou [Gitlab](https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html#add-a-remote).
-
-Nous vous encourageons à poursuivre les exercices pour compléter le premier chapitre, qui constitut une unité.
