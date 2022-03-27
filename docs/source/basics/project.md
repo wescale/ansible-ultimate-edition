@@ -44,6 +44,41 @@ On va donc s'appuyer sur le fichier `.envrc` dédié à `direnv` pour y placer l
 [](/exercises/ex02-config.md)
 ```
 
+## Configuration personnelle
+
+Outre les configurations communes destinées au comportement d'Ansible ou de vos autres outils, il émerge une besoin de façon
+quasi-systématique : surcharger une valeur de configuration ou y ajouter des valeurs spécifique à chaque membre d'équipe 
+(comme un chemin absolu incluant le nom de l'utilisateur).
+
+Pour cela, encore une fois `direnv` nous permet de régler le problème de façon simple. Il suffit d'ajouter une section de 
+chargement d'un autre fichier depuis notre `.envrc`:
+
+```bash
+layout python3
+
+ENV_ADDONS=".env.local .env.personal .env.secrets"
+for addon in ${ENV_ADDONS}; do
+    if [ -e "${PWD}/${addon}" ]; then
+        source ${PWD}/${addon}
+    fi
+done
+```
+
+Évidemment on git-ignore les fichiers `.env.local`, `.env.personal` et `.env.secrets` pour s'assurer qu'ils ne 
+soient pas poussés ailleurs que notre machine de travail.
+
+C'est typiquement dans ce fichier git-ignoré que vous pourrez sereinement ranger des variables d'environnement comme `AWS_PROFILE`,
+`SCW_SECRET_KEY` et autres `GANDI_API_KEY`. Le chargement sera assuré par `direnv` dès que vous entrez dans le répertoire 
+et sera déchargé en le quittant. Cela vous met à l'abri des problèmes de mauvaise clé active quand vous changez de contexte projet.
+
+Cette convention ne coûte pas cher à mettre en place et n'ajoute aucune dépendance d'outil.
+
+```{admonition} Mise en pratique
+:class: important
+
+[](/exercises/ex03-secrets.md)
+```
+
 ----
 
 ```{admonition} Approfondir
