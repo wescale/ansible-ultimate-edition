@@ -15,7 +15,7 @@ Tout projet Ansible contenant des playbooks doit être une collection.
 ```{admonition} Mise en pratique
 :class: important
 
-[](/exercises/ex01-project.md)
+[](/exercises/basics/ex01-project.md)
 ```
 
 ## Configuration
@@ -41,7 +41,7 @@ On va donc s'appuyer sur le fichier `.envrc` dédié à `direnv` pour y placer l
 ```{admonition} Mise en pratique
 :class: important
 
-[](/exercises/ex02-config.md)
+[](/exercises/basics/ex02-config.md)
 ```
 
 ## Configuration personnelle
@@ -76,7 +76,7 @@ Cette convention ne coûte pas cher à mettre en place et n'ajoute aucune dépen
 ```{admonition} Mise en pratique
 :class: important
 
-[](/exercises/ex02-config.md)
+[](/exercises/basics/ex02-config.md)
 ```
 
 ----

@@ -25,7 +25,7 @@ est robuste et nécessite peu d'expertise Python et un minimum de prérequis
 ```{admonition} Mise en pratique
 :class: important
 
-[](/exercises/ex00-install.md)
+[](/exercises/basics/ex00-install.md)
 ```
 
 ### Alternative - Packages Pip au niveau système

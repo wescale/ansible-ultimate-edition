@@ -11,7 +11,5 @@ ex00-install.md
 ex01-project.md
 ex02-config.md
 ex03-dependencies.md
-ex04-secrets.md
-ex05-ping.md
 ```
 

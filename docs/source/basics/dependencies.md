@@ -8,7 +8,7 @@ Autant ne rien inventer et suivre les coutumes locales :
 * une commande `pip install -U requirements.txt`
 
 Pas besoin de plus pour les dépendances de librairies Python... Les étapes précédentes de 
-[gestion de virtualenv dédié](../exercises/ex02-config.md) au projet commencent à payer puisque cette approche va naturellement 
+[gestion de virtualenv dédié](/exercises/basics/ex02-config.md) au projet commencent à payer puisque cette approche va naturellement 
 installer les librairies dans le répertoire du virtualenv, proprement isolé d'un projet à l'autre.
 
 ```{admonition} Perle de sagesse
@@ -96,4 +96,5 @@ Une fois toutes [](__index.md) respectées, on obtient une convention où un nou
 * `direnv allow .`
 * `make env`
 
-Ce qui paraît abordable par le plus grand nombre, même débutants. Ce n'est pas la seule méthode, mais cést
+Ce qui paraît abordable par le plus grand nombre, même débutants. Ce n'est évidemment pas la seule façon de faire les choses, 
+mais de toutes celles qu'on a essayé, c'est clairement le chemin de l'effort et de l'emmerdement minimal.

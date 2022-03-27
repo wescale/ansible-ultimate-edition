@@ -3,6 +3,6 @@
 ```{toctree}
 :maxdepth: 1
 
-__basics.md
+basics/__index.md
 ```
 
