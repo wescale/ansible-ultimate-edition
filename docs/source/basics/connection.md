@@ -2,11 +2,11 @@
 
 ## Rappels utiles
 
-La méthode de connexion par defaut d'Ansible est SSH. Par conséquent si vous arrivez à vous connecter avec un client SSH
+La méthode de connexion par defaut d'Ansible est SSH. Par conséquent, si vous arrivez à vous connecter avec un client SSH
 quelconque, Ansible DOIT y arriver aussi.
 
-Les paramètres de connexion SSH utilisés par Ansible peuvent se placer à plusieurs endroits, en fonction de la saison et du sens
-du vent... Là encore, choisir une convention et s'y tenir vous facilitera la vie.
+Les paramètres de connexion SSH utilisés par Ansible peuvent être placés à plusieurs endroits, en fonction de la saison et du sens
+du vent. Là encore, choisir une convention et s'y tenir vous facilitera la vie.
 
 ## Configuration SSH
 
@@ -68,7 +68,7 @@ Vous permet de rebondir de façon transparente au travers d'une connexion SSH à
 Host ultimate-*
   [...]
 ```
-Vous permet de grouper les options par patterns de nommage, pour éviter de créer des fichier de configuration trop verbeux.
+Vous permet de grouper les options par patterns de nommage, pour éviter de créer des fichiers de configuration trop verbeux.
 
 ----
 
@@ -82,16 +82,16 @@ Host ultimate-*
   TCPKeepAlive yes
 ```
 
-Renforce les comportements de maintient de connexion de SSH, afin d'éviter à Ansible de relancer une session à chaque tasks.
+Renforce les comportements de maintien de connexion de SSH, afin d'éviter à Ansible de relancer une session à chaque task.
 Cela améliore grandement les performances globales des playbooks.
 
 ----
 
-Si on reprend les étapes sont donc :
+Si on reprend, les étapes sont donc :
 
-* Construire un fichier de configuration SSH (local au projet), nommé par exemple `ssh.cfg`
-* S'assurer qu'on peut se connecter aux machines cibles via une commande `ssh -F ssh.cfg le_serveur`
-* Ajouter la mention `export ANSIBLE_SSH_ARGS="-F ${PWD}/ssh.cfg"` à la configuration Ansible (le désormais fameux fichier `.envrc`)
+* construire un fichier de configuration SSH (local au projet), nommé par exemple `ssh.cfg`
+* s'assurer qu'on peut se connecter aux machines cibles via une commande `ssh -F ssh.cfg le_serveur`
+* ajouter la mention `export ANSIBLE_SSH_ARGS="-F ${PWD}/ssh.cfg"` à la configuration Ansible (le désormais fameux fichier `.envrc`)
 
 
 ```{admonition} Approfondir
@@ -102,7 +102,7 @@ Si on reprend les étapes sont donc :
 
 ## Cohérence SSH-Config/Inventaire
 
-Une fois que la connectivité est assurée sans Ansible, en pur SSH. Il ne nous reste plus qu'à tailler notre inventaire en reprenant
+Une fois que la connectivité est assurée en SSH pur, il ne nous reste plus qu'à tailler notre inventaire en reprenant
 les labels attribués aux hosts dans la configuration SSH.
 
 ```bash
@@ -120,7 +120,7 @@ Host ultimate-minion
 [...]
 ```
 
-On a donc 3 hosts `ultimate-controller`, `ultimate-master`, et `ultimate-minion`, à répartir dans noter inventaire en taillant les 
+On a donc 3 hosts `ultimate-controller`, `ultimate-master` et `ultimate-minion` à répartir dans noter inventaire en taillant les 
 groupes qui nous conviennent.
 
 ```bash

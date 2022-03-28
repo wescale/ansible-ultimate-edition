@@ -1,11 +1,11 @@
 # Installation
 
-Outre le guide officiel qui est la référence pour toutes les plateformes, voici quelques retours de terrain
+Outre le guide officiel, qui est la référence pour toutes les plateformes, voici quelques retours de terrain
 pour vous garder dans une zone de confort, à l'écart des problèmes imprévus.
 
 La diversité des systèmes est le premier puzzle à résoudre pour permettre à une équipe de travailler efficacement.
 L'approche préconisée diminue la surface de frottement avec le système au maximum pour s'attaquer très tôt aux éventuels
-problèmes et ne plus avoir á y penser par la suite.
+problèmes et ne plus avoir à y penser par la suite.
 
 ## Méthode
 
@@ -20,7 +20,7 @@ point, donc autant se greffer ici pour être le plus à jour possible.
 
 Il existe de nombreuses manières de réaliser cette gestion de virtualenv. Je vous livre ici une méthode qui 
 est robuste et nécessite peu d'expertise Python et un minimum de prérequis
-(comprendre: on n'a pas réussi à faire moins jusqu'ici).
+(comprendre : on n'a pas réussi à faire moins jusqu'ici).
 
 ```{admonition} Mise en pratique
 :class: important

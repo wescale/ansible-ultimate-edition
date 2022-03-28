@@ -2,8 +2,8 @@
 
 ## Fichiers et répertoires
 
-L'organisation des collections Ansible colle parfaitement avec tous les besoins d'un projet
-par conséquent, pas besoin de tenter d'établir un nouveau standard exotique. On s'en tient à la 
+L'organisation des collections Ansible colle parfaitement avec tous les besoins d'un projet.
+Par conséquent, il n'est pas utile de tenter d'établir un nouveau standard exotique. On s'en tient à la 
 documentation ! Votre code sera beaucoup plus maintenable si vous adoptez les standards de la communauté.
 
 ```{admonition} Perle de sagesse
@@ -22,15 +22,15 @@ Tout projet Ansible contenant des playbooks doit être une collection.
 
 Le plus efficace est d'adopter une méthode de gestion de la configuration qui puisse convenir à Ansible mais également à d'autres
 outils qui seront impliqués dans notre développement. La méthode la plus tout-terrain est celle qui passe **par les variables
-d'environnement**. On peut de cette façon configurer Ansible, mais aussi à :
+d'environnement**. On peut configurer Ansible de cette façon, mais aussi :
 
-* Terraform (et l'immense majorité des providers Terraform)
-* AWS CLI
-* kubectl
-* helm
-* et bien d'autres...
+* Terraform (et l'immense majorité des providers Terraform) ;
+* AWS CLI ;
+* kubectl ;
+* helm ;
+* et bien d'autres.
 
-C'est une méthode de travail fiable et pratique, pour peu qu'on soit un peu aidé. C'est aussi un des aspects qui nous a poussé à 
+C'est une méthode de travail fiable et pratique, pour peu qu'on soit un peu aidé. C'est aussi un des aspects qui nous ont poussés à 
 choisir `direnv` pour la gestion de virtualenv décrite dans la section [](install.md). `Direnv` charge tout fichier 
 `.envrc` se trouvant dans un répertoire dans lequel on se place, mais il remet l'environnement à son état d'origine dès qu'on 
 en sort. Il n'y a donc plus de risque d'oublier une variable d'environnement en changeant de projet et qu'elle vienne 
@@ -46,11 +46,11 @@ On va donc s'appuyer sur le fichier `.envrc` dédié à `direnv` pour y placer l
 
 ## Configuration personnelle
 
-Outre les configurations communes destinées au comportement d'Ansible ou de vos autres outils, il émerge une besoin de façon
-quasi-systématique : surcharger une valeur de configuration ou y ajouter des valeurs spécifique à chaque membre d'équipe 
+Outre les configurations communes destinées au comportement d'Ansible ou de vos autres outils, il émerge un besoin de façon
+quasi-systématique : redéfinir une valeur de configuration ou y ajouter des valeurs spécifiques à chaque membre d'équipe 
 (comme un chemin absolu incluant le nom de l'utilisateur).
 
-Pour cela, encore une fois `direnv` nous permet de régler le problème de façon simple. Il suffit d'ajouter une section de 
+Pour cela, encore une fois, `direnv` nous permet de régler le problème de façon simple. Il suffit d'ajouter une section de 
 chargement d'un autre fichier depuis notre `.envrc`:
 
 ```bash
@@ -59,12 +59,12 @@ layout python3
 ENV_ADDONS=".env.local .env.personal .env.secrets"
 for addon in ${ENV_ADDONS}; do
     if [ -e "${PWD}/${addon}" ]; then
-        source ${PWD}/${addon}
+        source "${PWD}/${addon}"
     fi
 done
 ```
 
-Évidemment on git-ignore les fichiers `.env.local`, `.env.personal` et `.env.secrets` pour s'assurer qu'ils ne 
+Évidemment, on git-ignore les fichiers `.env.local`, `.env.personal` et `.env.secrets` pour s'assurer qu'ils ne 
 soient pas poussés ailleurs que notre machine de travail.
 
 C'est typiquement dans ce fichier git-ignoré que vous pourrez sereinement ranger des variables d'environnement comme `AWS_PROFILE`,

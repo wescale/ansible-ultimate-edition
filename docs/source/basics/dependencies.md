@@ -4,10 +4,10 @@
 
 Autant ne rien inventer et suivre les coutumes locales :
 
-* un fichier `requirements.txt` au [format attendu par Pip](https://pip.pypa.io/en/latest/reference/requirements-file-format/)
-* une commande `pip install -U requirements.txt`
+* un fichier `requirements.txt` au [format attendu par Pip](https://pip.pypa.io/en/latest/reference/requirements-file-format/) ;
+* une commande `pip install -U requirements.txt`.
 
-Pas besoin de plus pour les dépendances de librairies Python... Les étapes précédentes de 
+Pas besoin de plus pour les dépendances de librairies Python. Les étapes précédentes de 
 [gestion de virtualenv dédié](/exercises/basics/ex02-config.md) au projet commencent à payer puisque cette approche va naturellement 
 installer les librairies dans le répertoire du virtualenv, proprement isolé d'un projet à l'autre.
 
@@ -21,10 +21,10 @@ Tous les projets Python qui ont des dépendances devraient avant tout installer 
 
 Les dépendances Ansible sont de 2 natures :
 
-* des rôles
-* des collections
+* des rôles ;
+* des collections.
 
-par chance (ou intelligence des designers de Ansible), les 2 peuvent être décrits dans le même fichier. Ce fichier de 
+Par chance (ou intelligence des designers d'Ansible), les 2 peuvent être décrits dans le même fichier. Ce fichier de 
 dépendances se nomme par convention `requirements.yml` et ressemble à ceci :
 
 ```yaml
@@ -49,15 +49,15 @@ collections:
 
 ## Plus haut, plus vite, plus fort
 
-Si vous lisez ce texte, nous pouvons supposer qu'une part de votre travail est d'automatiser des choses pour aller plus vite...
+Si vous lisez ce texte, nous pouvons supposer qu'une part de votre travail est d'automatiser des choses pour aller plus vite.
 
 Par conséquent, poussons un petit cran plus loin. L'ajout d'un fichier `Makefile` pour grouper toutes les commandes 
-de rapatriements des dépendances est assez confortable sur le long terme.
+de rapatriement des dépendances est assez confortable sur le long terme.
 
 Le choix de Makefile a été dicté par sa grande disponibilité sur un ensemble de système (il est même souvent dans les packages
 par défaut).
 
-Voici ce que pourrait donner un Makefile un peu travaillé pour se faciliter la vie:
+Voici ce que pourrait donner un Makefile un peu travaillé pour se faciliter la vie :
 
 ```Makefile
 .PHONY: env
@@ -70,11 +70,11 @@ env:
 	echo "[  OK  ] PIP + WHEEL + SETUPTOOLS" || \
 	echo "[FAILED] PIP + WHEEL + SETUPTOOLS"
 
-	@pip3 install -U --no-cache-dir -r ${PWD}/requirements.txt && \
+	@pip3 install -U --no-cache-dir -r "${PWD}/requirements.txt" && \
 	echo "[  OK  ] PIP REQUIREMENTS" || \
 	echo "[FAILED] PIP REQUIREMENTS"
 
-	@ansible-galaxy collection install -fr ${PWD}/requirements.yml && \
+	@ansible-galaxy collection install -fr "${PWD}/requirements.yml" && \
 	echo "[  OK  ] ANSIBLE-GALAXY REQUIREMENTS" || \
 	echo "[FAILED] ANSIBLE-GALAXY REQUIREMENTS"
 ```
@@ -92,5 +92,5 @@ Une fois toutes [](__index.md) respectées, on obtient une convention où un nou
 * `direnv allow .`
 * `make env`
 
-Ce qui paraît abordable par le plus grand nombre, même débutants. Ce n'est évidemment pas la seule façon de faire les choses, 
+Cela paraît abordable par le plus grand nombre, même débutants. Ce n'est évidemment pas la seule façon de faire les choses, 
 mais de toutes celles qu'on a essayé, c'est clairement le chemin de l'effort et de l'emmerdement minimal.

@@ -8,10 +8,10 @@ Création d'un projet Ansible vierge.
 
 ## Prérequis
 
-Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail:
+Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail :
 
-* [le premier exercice](ex00-install.md)
-* Git
+* [le premier exercice](ex00-install.md) ;
+* git.
 
 Pour notre cas de référence (Debian Bullseye), atteindre ces prérequis passe par le lancement des commandes suivantes :
 
@@ -29,7 +29,7 @@ contenant le virtualenv géré par `direnv` :
 $ cd ~/ansible-workspaces
 ```
 
-Puis nous pouvons nous appuyer sur la commande `ansible-galaxy` pour initier la structure de notre projet :
+Puis, nous pouvons nous appuyer sur la commande `ansible-galaxy` pour initier la structure de notre projet :
 
 ```bash session
 $ ansible-galaxy collection init ultimate.training
@@ -49,7 +49,7 @@ $ tree
 3 directories, 3 files
 ```
 
-On peut voir que `ansible-galaxy` a créé le minimum, à nous de remplir le reste pour obtenir un espace de travail complet.
+On peut voir qu'`ansible-galaxy` a créé le minimum. À nous de remplir le reste pour obtenir un espace de travail complet.
 
 
 ```bash session
@@ -107,5 +107,5 @@ $ git commit -am "ultimate init"
 
 ## Ligne d'arrivée
 
-Félicitations vous avez créé votre premier projet Ansible normé. Libre à vous de lancer quelques commandes de plus 
-pour venir lié votre dépôt local Git avec une plateforme centrale comme [Github](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github) ou [Gitlab](https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html#add-a-remote).
+Félicitations, vous avez créé votre premier projet Ansible normé. Libre à vous de lancer quelques commandes de plus 
+pour venir lier votre dépôt local git avec une plateforme centrale comme [GitHub](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github) ou [GitLab](https://docs.gitlab.com/ee/gitlab-basics/start-using-git.html#add-a-remote).

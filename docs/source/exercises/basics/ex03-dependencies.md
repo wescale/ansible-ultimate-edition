@@ -8,7 +8,7 @@ Ajouter des dépendances Python et Ansible à un projet.
 
 ## Prérequis
 
-Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail:
+Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail :
 
 * [Les exercices 00 à 02](__index.md)
 * Make
@@ -22,7 +22,7 @@ $ sudo apt install make -y
 
 ## Échauffement
 
-Pour éviter des problèmes communs de contruction de package Pip, commencez par lancer :
+Pour éviter des problèmes communs de construction de package Pip, commencez par lancer :
 
 ```bash session
 $ pip3 install -U pip wheel setuptools --no-cache-dir 
@@ -41,7 +41,7 @@ Et valider la nouvelle version de notre `.envrc` auprès de direnv avec la comma
 $ direnv allow .
 ```
 
-## Création d'un fichier de requirement Pip
+## Création d'un fichier de requirements Pip
 
 Créez un fichier `requirements.txt` avec notre version préférée d'Ansible pour le projet.
 
@@ -60,7 +60,7 @@ Collecting ansible-core==2.12.3
 Successfully installed MarkupSafe-2.1.1 PyYAML-6.0 ansible-core-2.12.3 cffi-1.15.0 cryptography-36.0.2 jinja2-3.1.1 packaging-21.3 pycparser-2.21 pyparsing-3.0.7 resolvelib-0.5.4
 ```
 
-## Création d'un fichier de requirement Ansible Galaxy
+## Création d'un fichier de requirements Ansible Galaxy
 
 Créez un fichier `requirements.yml` avec un rôle et une collection tirés de la plateforme centrale Ansible Galaxy :
 
@@ -111,11 +111,11 @@ env:
 	echo "[  OK  ] PIP + WHEEL + SETUPTOOLS" || \
 	echo "[FAILED] PIP + WHEEL + SETUPTOOLS"
 
-	@pip3 install -U --no-cache-dir -r ${PWD}/requirements.txt && \
+	@pip3 install -U --no-cache-dir -r "${PWD}/requirements.txt" && \
 	echo "[  OK  ] PIP REQUIREMENTS" || \
 	echo "[FAILED] PIP REQUIREMENTS"
 	
-	@ansible-galaxy collection install -fr ${PWD}/requirements.yml && \
+	@ansible-galaxy collection install -fr "${PWD}/requirements.yml" && \
 	echo "[  OK  ] ANSIBLE-GALAXY REQUIREMENTS" || \
 	echo "[FAILED] ANSIBLE-GALAXY REQUIREMENTS"
 ```
