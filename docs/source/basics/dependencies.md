@@ -62,7 +62,7 @@ Voici ce que pourrait donner un Makefile un peu travaillé pour se faciliter la 
 ```Makefile
 .PHONY: env
 env-desc = "Setup local dev env"
-env: header
+env:
 	@echo "==> $(env-desc)"
 
 	@[ -d "${PWD}/.direnv" ] || (echo "Venv not found: ${PWD}/.direnv" && exit 1)
@@ -73,10 +73,6 @@ env: header
 	@pip3 install -U --no-cache-dir -r ${PWD}/requirements.txt && \
 	echo "[  OK  ] PIP REQUIREMENTS" || \
 	echo "[FAILED] PIP REQUIREMENTS"
-	
-	@pip3 install -U --no-cache-dir -r ${PWD}/docs/requirements.txt && \
-	echo "[  OK  ] DOC REQUIREMENTS" || \
-	echo "[FAILED] DOC REQUIREMENTS"
 
 	@ansible-galaxy collection install -fr ${PWD}/requirements.yml && \
 	echo "[  OK  ] ANSIBLE-GALAXY REQUIREMENTS" || \
