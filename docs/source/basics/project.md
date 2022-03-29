@@ -38,10 +38,20 @@ impacter un autre projet.
 
 On va donc s'appuyer sur le fichier `.envrc` dédié à `direnv` pour y placer la configuration commune à toute l'équipe.
 
-```{admonition} Mise en pratique
-:class: important
+Quelques clés de configuration Ansible à connaître (et les valeurs conseillées) :
 
-[](/exercises/basics/ex02-config.md)
+* `ANSIBLE_STDOUT_CALLBACK="ansible.posix.debug"` : formatage de la sortie standard d'Ansible pour 
+la rendre lisible par un humain (interpréter les '\n' notamment).
+* `ANSIBLE_INVENTORY="inventory"` : le fichier d'inventaire pris par défaut.
+* `ANSIBLE_FORKS="10"` : nombre de connexions SSH simultanées qui vont appliquer les playbooks aux machines cibles.
+* `ANSIBLE_ROLES_PATH="roles"` : chemin où Ansible va rechercher les rôles inclus depuis les playbooks.
+* `ANSIBLE_CALLBACKS_ENABLED="timer,profile_tasks"` : ajout d'une prise de mesure des performances de chaque tasks et 
+un top 15 des plus chronophages en fin d'exécution de playbook.
+
+```{admonition} Approfondir
+:class: seealso
+
+* [Documentation Ansible - Configuration Settings](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
 ```
 
 ## Configuration personnelle
@@ -78,13 +88,4 @@ Cette convention ne coûte pas cher à mettre en place et n'ajoute aucune dépen
 
 [](/exercises/basics/ex02-config.md)
 ```
-
-----
-
-```{admonition} Approfondir
-:class: seealso
-
-* [Documentation Ansible - Configuration Settings](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
-```
-
 

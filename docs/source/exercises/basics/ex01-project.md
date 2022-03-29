@@ -64,6 +64,7 @@ $ touch playbooks/group_vars/all.yml group_vars/all.yml host_vars/.gitkeep roles
 $ tree -a
 .
 ├── docs
+│   └── .gitkeep
 ├── galaxy.yml
 ├── group_vars
 │   └── all.yml
@@ -77,8 +78,9 @@ $ tree -a
 │   └── README.md
 ├── README.md
 └── roles
+    └── .gitkeep
 
-7 directories, 7 files
+7 directories, 9 files
 ```
 
 Nous avons maintenant un cadre de travail qui correspond à nos attentes, nous pouvons l'encadrer par une gestion
@@ -93,7 +95,7 @@ $ git init
 Dépôt Git vide initialisé dans /home/user/ansible-workspaces/ultimate/training/.git/
 
 $ git add .
-$ git commit -am "ultimate init"
+$ git commit -m "ultimate init"
 [main (commit racine) df65334] ultimate init
  7 files changed, 96 insertions(+)
  create mode 100644 README.md
