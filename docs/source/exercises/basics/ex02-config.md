@@ -9,7 +9,7 @@ Configurer un projet pour pouvoir travailler proprement avec.
 ## Création d'un virtualenv dédié
 
 Afin d'être certain de fixer la version d'Ansible avec laquelle nous travaillons et pour préparer
-l'isolation des dépendances Python du projet, nous faisons un virtualenv dédié. C'est la même méthode que pour 
+l'isolation des dépendances Python du projet, nous créons un virtualenv dédié. C'est la même méthode que pour 
 l'installation initiale, mais au niveau de notre projet.
 
 ```bash session
@@ -31,7 +31,7 @@ $ git add .envrc && git commit -m "adding .envrc"
 
 On peut voir que le virtual env est activé à partir de l'activation de direnv.
 
-Il nous reste à faire ignorer à Git le répertoire `.direnv` local au projet pour éviter de l'inclure dans un commit.
+Il nous reste à faire ignorer par git le répertoire `.direnv` local au projet pour éviter de l'inclure dans un commit.
 
 ```bash session
 $ echo ".direnv" >> .gitignore
@@ -41,7 +41,7 @@ $ git add .gitignore && git commit -m "ignore local virtualenv"
 
 ## Configuration d'Ansible
 
-Nous allons maintenant configurer quelques comportements basiques de Ansible en remplissant le fichier `.envrc`.
+Nous allons maintenant configurer quelques comportements basiques d'Ansible en remplissant le fichier `.envrc`.
 
 ```bash session
 $ cat >> .envrc <<EOF
@@ -68,7 +68,7 @@ version finale.
 
 ## Configuration personnelle
 
-Sur cette base nous ajoutons notre configuration personnelle. Pour l'exemple nous prenons les 2 variables sensibles permettant de configurer notre accès aux API Scaleway : `SCW_ACCESS_KEY`, `SCW_SECRET_KEY` et `SCW_DEFAULT_ORGANIZATION_ID`.
+Sur cette base, nous ajoutons notre configuration personnelle. Pour l'exemple, nous prenons les 2 variables sensibles permettant de configurer notre accès aux API Scaleway : `SCW_ACCESS_KEY`, `SCW_SECRET_KEY` et `SCW_DEFAULT_ORGANIZATION_ID`.
 
 Tout d'abord nous rajoutons un fichier dans le `.gitignore` afin de ne pas faire d'erreur de manipulation :
 
@@ -93,7 +93,7 @@ Enfin, pour assurer le chargement transparent de ce nouveau fichier, on intègre
 ```bash
 LOCAL_CONFIG="${PWD}/.env.local"
 if [ -e "${LOCAL_CONFIG}" ]; then
-  source ${LOCAL_CONFIG}
+  source "${LOCAL_CONFIG}"
 fi
 ```
 

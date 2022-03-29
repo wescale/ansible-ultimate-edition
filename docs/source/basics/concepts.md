@@ -2,23 +2,23 @@
 
 Ansible est un logiciel libre (GPLv3) d'automatisation à large spectre. Ansible est notamment très adapté
 pour la configuration et la gestion des ordinateurs. Il combine le déploiement de logiciels multi-hosts,
-l'exécution des tâches ad-hoc, et la gestion de configuration.
+l'exécution des tâches _ad hoc_ et la gestion de configuration.
 
 Il interagit avec les différents hosts à travers SSH (par défaut, de nombreuses options sont disponibles)
 et ne nécessite l'installation d'aucun logiciel supplémentaire sur ceux-ci.
 
-Le but principal du projet Ansible est de rester simple d'accès et d'utilisation. Le projet met également de gros
-efforts sur la sécurité et la fiabilité. Le langage d'expression de Ansible est notamment pensé pour être auditable
+Le but principal du projet Ansible est de rester simple d'accès et d'utilisation. Le projet déploie également de gros
+efforts sur la sécurité et la fiabilité. Le langage d'expression d'Ansible est notamment pensé pour être auditable
 par des humains non formés à Ansible.
 
 ## Ansible...
 
-* est codé en Python et distribué comme un package PyPi.
-* exécute des actions décrites en YAML (écrit par ses utilisateurs).
-* peut exécuter des actions sur un ou plusieurs systèmes distants.
-* repose sur SSH comme mécanique de connexion par défaut.
-* vise à l'[idempotence](https://fr.wikipedia.org/wiki/Idempotence)
-* s'installe dans l'espace utilisateur.
+* est codé en Python et distribué comme un package PyPi ;
+* exécute des actions décrites en YAML (écrit par ses utilisateurs) ;
+* peut exécuter des actions sur un ou plusieurs systèmes distants ;
+* repose sur SSH comme mécanique de connexion par défaut ;
+* vise à l'[idempotence](https://fr.wikipedia.org/wiki/Idempotence) ;
+* s'installe dans l'espace utilisateur ;
 * ne nécessite pas l'installation d'agent sur les machines pilotées.
 
 ----
@@ -71,7 +71,7 @@ $ ./dyn_inventory --host web_1
 }
 ```
 
-Les inventaires dynamiques peuvent prendre la forme de scripts et donc forger leur réponse en interrogeant des API qui connaissent les machines auxquelles se connecter (AWS, OpenStack, Cobbler, ...).
+Les inventaires dynamiques peuvent prendre la forme de scripts et donc forger leur réponse en interrogeant des API qui connaissent les machines auxquelles se connecter (AWS, OpenStack, Cobbler, _etc._).
 
 ### Module/Task
 
@@ -87,7 +87,7 @@ C'est la plus petite unité d'action disponible. Le résultat de son exécution 
 
 ### Playbook
 
-Liste d'objet Play. Un Play est une liste de rôles et/ou de task à appliquer sur un groupe de machines cibles.
+Liste d'objets Play. Un Play est une liste de rôles et/ou de tasks à appliquer sur un groupe de machines cibles.
 
 **Exemple de fichier playbook contenant 2 plays**
 ```
@@ -109,7 +109,7 @@ Liste d'objet Play. Un Play est une liste de rôles et/ou de task à appliquer s
 
 ### Handler
 
-Task lancée en fin de play si "notifiée" par une autre task. C'est à dire si la task porte un attribut
+Task lancée en fin de play si "notifiée" par une autre task, c'est-à-dire si la task porte un attribut
 `notify` avec le `name` du handler et que son résultat d'exécution est `changed`.
 Un handler notifié plusieurs fois ne sera exécuté qu’une fois.
 
@@ -128,14 +128,14 @@ Un handler notifié plusieurs fois ne sera exécuté qu’une fois.
         state: restarted
 ```
 
-### Role
+### Rôle
 
 Unité de réutilisation de code Ansible. Peut contenir des tasks, des handlers, des templates, des fichiers et des variables.
 
 **Organisation d'un rôle**
 ```
 ├── defaults 
-│   └── main.yml --> variables par défaut (aisément surchargeables)
+│   └── main.yml --> variables par défaut (aisément redéfinissables)
 ├── files        --> fichiers statiques 
 ├── handlers 
 │   └── main.yml --> handlers 
@@ -148,7 +148,7 @@ Unité de réutilisation de code Ansible. Peut contenir des tasks, des handlers,
 │   ├── inventory 
 │   └── test.yml 
 └── vars
-    └── main.yml --> variables surchargeables uniquement par option en ligne de commande
+    └── main.yml --> variables redéfinissables uniquement par option en ligne de commande
 ```
 
 ### Collection
