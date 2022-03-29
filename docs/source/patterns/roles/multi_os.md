@@ -1,6 +1,6 @@
 # Supporter plusieurs versions de systèmes
 
-## Observations
+## Observation
 
 Il peut arriver que l'on veuille supporter :
 
