@@ -115,7 +115,7 @@ env:
 	echo "[  OK  ] PIP REQUIREMENTS" || \
 	echo "[FAILED] PIP REQUIREMENTS"
 	
-	@ansible-galaxy collection install -fr "${PWD}/requirements.yml" && \
+	@ansible-galaxy install -fr "${PWD}/requirements.yml" && \
 	echo "[  OK  ] ANSIBLE-GALAXY REQUIREMENTS" || \
 	echo "[FAILED] ANSIBLE-GALAXY REQUIREMENTS"
 ```
