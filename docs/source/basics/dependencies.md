@@ -74,7 +74,7 @@ env:
 	echo "[  OK  ] PIP REQUIREMENTS" || \
 	echo "[FAILED] PIP REQUIREMENTS"
 
-	@ansible-galaxy collection install -fr ${PWD}/requirements.yml && \
+	@ansible-galaxy install -fr ${PWD}/requirements.yml && \
 	echo "[  OK  ] ANSIBLE-GALAXY REQUIREMENTS" || \
 	echo "[FAILED] ANSIBLE-GALAXY REQUIREMENTS"
 ```
@@ -94,3 +94,10 @@ Une fois toutes [](__index.md) respectées, on obtient une convention où un nou
 
 Ce qui paraît abordable par le plus grand nombre, même débutants. Ce n'est évidemment pas la seule façon de faire les choses, 
 mais de toutes celles qu'on a essayé, c'est clairement le chemin de l'effort et de l'emmerdement minimal.
+
+```{admonition} Mise en pratique
+:class: important
+
+[](/exercises/basics/ex03-dependencies.md)
+```
+

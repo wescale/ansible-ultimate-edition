@@ -44,24 +44,21 @@ $ git add .gitignore && git commit -m "ignore local virtualenv"
 Nous allons maintenant configurer quelques comportements basiques de Ansible en remplissant le fichier `.envrc`.
 
 ```bash session
-$ echo 'export ANSIBLE_STDOUT_CALLBACK="ansible.posix.debug"' >> .envrc
-direnv: error /home/user/Workspaces/WeScale/ansible-ultimate-edition/.envrc is blocked. Run `direnv allow` to approve its content
+$ cat >> .envrc <<EOF
+export ANSIBLE_STDOUT_CALLBACK="ansible.posix.debug"
+export ANSIBLE_INVENTORY="inventory"
+export ANSIBLE_FORKS="10"
+export ANSIBLE_ROLES_PATH="roles"
+export ANSIBLE_CALLBACK_WHITELIST="timer,profile_tasks"
+EOF
 
-$ echo 'export ANSIBLE_INVENTORY="inventory"' >> .envrc
-direnv: error /home/user/Workspaces/WeScale/ansible-ultimate-edition/.envrc is blocked. Run `direnv allow` to approve its content
-
-$ echo 'export ANSIBLE_FORKS="10"' >> .envrc
-direnv: error /home/user/Workspaces/WeScale/ansible-ultimate-edition/.envrc is blocked. Run `direnv allow` to approve its content
-
-$ echo 'export ANSIBLE_ROLES_PATH="roles"' >> .envrc
-direnv: error /home/user/Workspaces/WeScale/ansible-ultimate-edition/.envrc is blocked. Run `direnv allow` to approve its content
-
-$ echo 'export ANSIBLE_CALLBACK_WHITELIST="timer,profile_tasks"' >> .envrc
 direnv: error /home/user/Workspaces/WeScale/ansible-ultimate-edition/.envrc is blocked. Run `direnv allow` to approve its content
 
 $ direnv allow .
 direnv: loading ~/ansible-workspaces/ultimate/training/.envrc
-direnv: export +ANSIBLE_CALLBACK_WHITELIST +ANSIBLE_FORKS +ANSIBLE_INVENTORY +ANSIBLE_ROLES_PATH +ANSIBLE_STDOUT_CALLBACK +VIRTUAL_ENV ~PATH
+direnv: export +ANSIBLE_CALLBACK_WHITELIST +ANSIBLE_FORKS +ANSIBLE_INVENTORY +ANSIBLE_ROLES_PATH +ANSIBLE_STDOUT_CALLBACK
+
+$ git commit -am "Added ansible configuration"
 ```
 
 Dès que nous modifions le fichier `.envrc`, direnv nous met en garde car la version actuelle n'a pas été explicitement  approuvée
@@ -83,11 +80,11 @@ Ensuite nous pouvons remplir ce fichier avec nos exports de variables :
 
 
 ```bash session
-$ echo 'export SCW_ACCESS_KEY="..."' >> .env.local
-
-$ echo 'export SCW_SECRET_KEY="..."' >> .env.local
-
-$ echo 'export SCW_DEFAULT_ORGANIZATION_ID="..."' >> .env.local
+$ cat >> .env.local <<EOF
+export SCW_ACCESS_KEY="..."
+export SCW_SECRET_KEY="..."
+export SCW_DEFAULT_ORGANIZATION_ID="..."
+EOF
 ```
 
 Enfin, pour assurer le chargement transparent de ce nouveau fichier, on intègre un bout de shell dans notre 
@@ -105,6 +102,12 @@ Une fois modifié le fichier `.envrc`, direnv nécessite que l'on revalide son c
 
 ```bash session
 $ direnv allow .
+```
+
+Et histoire de rester propre, on commit le tout :
+
+```bash session
+$ git commit -am "Added personnal configuration loading"
 ```
 
 ## Ligne d'arrivée

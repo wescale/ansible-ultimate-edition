@@ -86,6 +86,7 @@ ultimate-server | SUCCESS => {
 Ce `ping` Ansible permet de valider que vous avez bien une connexion SSH valide et qu'il y a au moins une version de Python
 sur le serveur auquel on se connecte.
 
+
 ## Ligne d'arrivée
 
 Félicitations vous venez d'effectuer votre premier ping Ansible. Si vous avez bien suivi tous les exercices de la section, vous
