@@ -1,6 +1,6 @@
 # Supporter plusieurs versions de systèmes
 
-## Observé dans la nature
+## Observations
 
 Il peut arriver que l'on veuille supporter :
 
@@ -29,10 +29,16 @@ Le niveau supérieur est de charger un fichier de tasks dédié en s'appuyant su
   include_tasks: debian.yml
   when: ansible_distribution == 'Debian'
 ```
+...ou encore :
+
+```yaml
+- name: Debian-only tasks
+  include_tasks: "{{ ansible_distribution | lower }}.yml
+```
 
 Mais là encore on va rapidement se retrouver avec des cas et des sous-cas au fil de la vie du code.
 
-## Méthode
+## Proposition
 
 L'organisation de code pour pouvoir supporter des tasks spécifiques par système est un problème récurrent et chaque
 projet y va de son implémentation. Voici une méthode tout-terrain.
@@ -86,7 +92,7 @@ Concrètement, ce code exécuté depuis un rôle sur une machine Debian Bullseye
 * si le fichier est absent, tenter `tasks/debian/main.yml`
 * si le fichier est absent, passer à la suite sans erreur
 
-## Évolutions
+## Évolution
 
 Une fois ce code en place dans le fichier `tasks/main.yml` d'un rôle, vous n'aurez plus besoin d'y toucher. Implémenter des 
 variables et comportements spécifiques reviendra à ajouter les fichiers à charger en suivant la convention de nommage des fichiers.
