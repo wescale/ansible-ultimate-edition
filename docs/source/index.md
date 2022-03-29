@@ -8,7 +8,7 @@
 :hidden:
 
 basics/__index.md
-testing/__index.md
-patterns/__index.md
+craftsmanship/__index.md
+best_practices/__index.md
 exercises/__index.md
 ```

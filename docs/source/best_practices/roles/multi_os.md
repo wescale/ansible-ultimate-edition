@@ -92,7 +92,7 @@ Concrètement, ce code exécuté depuis un rôle sur une machine Debian Bullseye
 * si le fichier est absent, tenter `tasks/debian/main.yml`
 * si le fichier est absent, passer à la suite sans erreur
 
-## Évolution
+## Intégration
 
 Une fois ce code en place dans le fichier `tasks/main.yml` d'un rôle, vous n'aurez plus besoin d'y toucher. Implémenter des 
 variables et comportements spécifiques reviendra à ajouter les fichiers à charger en suivant la convention de nommage des fichiers.
