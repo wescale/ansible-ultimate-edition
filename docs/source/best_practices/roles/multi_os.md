@@ -13,6 +13,9 @@ classiquement sur ces variable collectées qu'il convient de s'appuyer pour savo
 Pour cela, vous trouverez couramment des approches basées sur l'exécution conditionnelle de tasks.
 
 ```yaml
+#
+# Ne pas reproduire chez vous
+# 
 - name: Debian-only templating
   template:
     src: ...
@@ -25,6 +28,9 @@ Le problème latent est la duplication de code, qui arrive rapidement avec la mu
 Le niveau supérieur est de charger un fichier de tasks dédié en s'appuyant sur la même variable :
 
 ```yaml
+#
+# Ne pas reproduire chez vous
+# 
 - name: Debian-only tasks
   include_tasks: debian.yml
   when: ansible_distribution == 'Debian'
@@ -32,6 +38,9 @@ Le niveau supérieur est de charger un fichier de tasks dédié en s'appuyant su
 ...ou encore :
 
 ```yaml
+#
+# Ne pas reproduire chez vous
+# 
 - name: Debian-only tasks
   include_tasks: "{{ ansible_distribution | lower }}.yml
 ```
