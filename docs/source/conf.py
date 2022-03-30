@@ -19,12 +19,25 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode"
 ]
+
 templates_path = ['_templates']
 exclude_patterns = []
 source_suffix = {
     '.rst': 'restructuredtext',
     '.md': 'markdown',
 }
+#
+# -- Options for EPUB output -------------------------------------------------
+#
+version = release
+epub_theme = "furo"
+epub_title = "Ansible Ultimate Edition"
+epub_exclude_files = [
+    '_static/scripts/furo.js.LICENSE.txt', 
+    '_static/scripts/furo.js.map',
+    '_static/styles/furo-extensions.css.map', 
+    '_static/styles/furo.css.map'
+]
 #
 # -- Options for HTML output -------------------------------------------------
 #
