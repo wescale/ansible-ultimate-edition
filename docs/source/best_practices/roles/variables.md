@@ -52,8 +52,18 @@ pour respecter cela.
 Pour faire extrêmement simple :
 
 * Toute variable de rôle de `defaults/main.yml` doit être préfixée par le nom du rôle.
-* Toute variable de rôle de `vars/main.yml` doit être préfixée par '_' suivi par le nom du rôle.
+* Toute variable de rôle de `vars/main.yml` doit être préfixée par un double underscore ("__") suivi par le nom du rôle.
 
 Ainsi vous vous assurez que vos variables ne viendront pas écraser des variables existantes externes au rôle, et vous saurez 
 d'un coup d'oeil où une variable a été définie.
 
+## Sorties
+
+Si d'aventure vous éprouvez le besoin qu'un rôle exporte des variables à destination d'autres tasks ou à la suite du flot d'exécution 
+de votre playbook :
+
+* Définissez ces variables depuis des tasks `set_fact` dans votre rôle 
+* Préfixez ces variables par un simple underscore ("_") suivi par le nom du rôle.
+
+Là encore le but est de pouvoir identifier l'origine d'une variable au premier coup d'oeil. En période de debug, vous vous remercierez
+d'avoir adopté cette convention.
