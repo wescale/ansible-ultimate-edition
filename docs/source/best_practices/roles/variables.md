@@ -67,3 +67,13 @@ de votre playbook :
 
 Là encore le but est de pouvoir identifier l'origine d'une variable au premier coup d'oeil. En période de debug, vous vous remercierez
 d'avoir adopté cette convention.
+
+```{admonition} En résumé
+:class: important
+
+Les variables nommées :
+
+* `rolename_*` : paramètres d'entrée définis dans `defaults/main.yml`
+* `_rolename_*` : valeurs de sortie définies via le module `set_fact`
+* `__rolename_*` : variables internes définies dans `vars/main.yml`
+```

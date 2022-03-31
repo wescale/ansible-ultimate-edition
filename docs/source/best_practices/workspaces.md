@@ -24,7 +24,7 @@ Si vous ne définissez PAS d'inventaire par défaut (clé de configuration `ANSI
 $ ansible-playbook playbooks/danger_zone.yml -i inventories/dev_env.inventory
 ```
 
-## Variable des les patterns de sélection
+## Variabiliser les patterns de sélection
 
 Vous avez la possibilité d'intégrer des variables dans votre sélection de hosts au sein d'un playbook.
 
@@ -46,4 +46,25 @@ $ ansible-playbook playbooks/danger_zone.yml -e env_name=production
 
 De cette façon, la variable sera disponible pour le playbook au bon moment et le playbook s'appliquera sur le groupe `production_webservers` (selon notre exemple).
 
+Les playbook Ansible peuvent servir à automatiser d'autres outils d'Infra-as-Code qui ont déjà ce comportement de workspace, comme Terraform, pensez à propager votre variable de workspace à ces outils pour un rendu plus homogène.
 
+## S'appuyer sur l'environnement
+
+Une autre façon d'implémenter la variabilisation des patterns de hosts est de se reposer sur une variable d'environnement qui, par convention avec votre équipe, servira de clé de workspace. Cela peut se faire en passant par le lookup `env` d'Ansible :
+
+```yaml
+---
+- name: Exemple de pattern variabilisé via env
+  hosts: "{{ lookup('env', 'PROJECT_X_WORKSPACE') }}_webservers"
+  tasks:
+    [...]
+```
+
+Évidemment, vous éviterez d'inclure une valeur par défaut de cette variable à votre configuration projet pour forcer chacun à 
+démarrer sa session de travail par un :
+
+```bash session
+$ export PROJECT_X_WORKSPACE="production"
+```
+
+C'est une méthode que nous utilisons fréquement et qui satisfait les équipes.
