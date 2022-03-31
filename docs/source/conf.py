@@ -18,7 +18,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
-    "edx_theme"
+    "galaxie_docs_theme"
 ]
 templates_path = ['_templates']
 exclude_patterns = []
@@ -29,9 +29,8 @@ source_suffix = {
 #
 # -- Options for EPUB output --------------------------------------------------
 #
-
 version = release
-epub_theme = "epub"
+epub_theme = "basic"
 epub_title = "Ansible Ultimate Edition"
 epub_language = "fr"
 epub_exclude_files = [
