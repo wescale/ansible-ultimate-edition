@@ -120,7 +120,7 @@ Host ultimate-minion
 [...]
 ```
 
-On a donc 3 hosts `ultimate-controller`, `ultimate-master` et `ultimate-minion` à répartir dans noter inventaire en taillant les 
+On a donc 3 hosts `ultimate-controller`, `ultimate-master` et `ultimate-minion` à répartir dans notre inventaire en taillant les 
 groupes qui nous conviennent.
 
 ```bash

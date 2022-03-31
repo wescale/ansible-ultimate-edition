@@ -54,7 +54,7 @@ Pour faire extrêmement simple :
 * Toute variable de rôle de `defaults/main.yml` doit être préfixée par le nom du rôle.
 * Toute variable de rôle de `vars/main.yml` doit être préfixée par un double underscore (`__`) suivi par le nom du rôle.
 
-Ainsi vous vous assurez que vos variables ne viendront pas écraser des variables existantes externes au rôle, et vous saurez 
+Ainsi, vous vous assurez que vos variables ne viendront pas écraser des variables existantes externes au rôle, et vous saurez 
 d'un coup d'oeil où une variable a été définie.
 
 ## Sorties
