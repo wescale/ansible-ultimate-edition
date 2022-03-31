@@ -22,8 +22,8 @@ du résultat d'une autre task revient souvent sous ces formes :
 ```
 
 Cette approche complexifie inutilement le code de vos rôles/playbooks en réimplémentant la mécanique interne à Ansible qu'est le 
-handler. Un des arguments est que les handlers se déclenchent en fin d'exécution de playbook et donc diffère parfois trop loin
-le lancement de ces comportements comditionnels.
+handler. Un des arguments est que les handlers se déclenchent en fin d'exécution de playbook et donc diffèrent parfois trop
+le lancement de ces comportements conditionnels.
 
 ## Proposition
 
@@ -57,5 +57,5 @@ En couplant la définition classique de handler ave l'usage du module **meta**, 
 ## Intégration
 
 Cette approche est aussi bien applicable dans un contexte de playbooks comme vu au-dessus, que dans un contexte de rôle. Dans un rôle
-vous rangerz vos handlers dans le fichier `handlers/main.yml` et vous utiliserez la combo attribut `notify` + module `meta: flush_handlers` là où cela sera utile.
+vous rangerez vos handlers dans le fichier `handlers/main.yml` et vous utiliserez la combo attribut `notify` + module `meta: flush_handlers` là où cela sera utile.
 

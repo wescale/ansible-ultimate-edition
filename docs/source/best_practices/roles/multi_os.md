@@ -2,13 +2,13 @@
 
 ## Observation
 
-Il peut arriver que l'on veuille supporter :
+Il peut arriver de vouloir supporter :
 
 * différents systèmes
-* différentes version d'un même système
+* différentes versions d'un même système
 
 Ansible collecte des **facts** à la connexion au système pour nous permettre de différencier un OS d'un autre. C'est 
-classiquement sur ces variable collectées qu'il convient de s'appuyer pour savoir dans quel cas l'exécution se déroule.
+classiquement sur ces variables collectées qu'il convient de s'appuyer pour savoir dans quel cas l'exécution se déroule.
 
 Pour cela, vous trouverez couramment des approches basées sur l'exécution conditionnelle de tasks.
 
@@ -52,7 +52,7 @@ Mais là encore on va rapidement se retrouver avec des cas et des sous-cas au fi
 L'organisation de code pour pouvoir supporter des tasks spécifiques par système est un problème récurrent et chaque
 projet y va de son implémentation. Voici une méthode tout-terrain.
 
-L'idée est de créer un fois pour toute une chaine de chargement préférentiel qui s'appuie sur nos facts. L'inclusion de facts dans
+L'idée est de créer un fois pour toutes une chaine de chargement préférentiel qui s'appuie sur nos facts. L'inclusion de facts dans
 le nommage des fichiers recherchés permet de ne charger que les cas les plus spécifiques, et cela pour des fichiers de variable ET pour des fichiers de tasks.
 
 ```yaml
@@ -90,16 +90,16 @@ le nommage des fichiers recherchés permet de ne charger que les cas les plus sp
 
 Concrètement, ce code exécuté depuis un rôle sur une machine Debian Bullseye d'architecture x86 va :
 
-* tenter de charger le fichier de variables `vars/debian_11_x86_64.yml`
-* si le fichier est absent, tenter `vars/debian_x86_64.yml`
-* si le fichier est absent, tenter `vars/debian_11.yml`
-* si le fichier est absent, tenter `vars/debian.yml`
-* si le fichier est absent, passer à la suite sans erreur
-* tenter d'exécuter le fichier de tasks `tasks/debian_11_x86_64/main.yml`
-* si le fichier est absent, tenter `tasks/debian_x86_64/main.yml`
-* si le fichier est absent, tenter `tasks/debian_11/main.yml`
-* si le fichier est absent, tenter `tasks/debian/main.yml`
-* si le fichier est absent, passer à la suite sans erreur
+* tenter de charger le fichier de variables `vars/debian_11_x86_64.yml` ;
+* si le fichier est absent, tenter `vars/debian_x86_64.yml` ;
+* si le fichier est absent, tenter `vars/debian_11.yml` ;
+* si le fichier est absent, tenter `vars/debian.yml` ;
+* si le fichier est absent, passer à la suite sans erreur ;
+* tenter d'exécuter le fichier de tasks `tasks/debian_11_x86_64/main.yml` ;
+* si le fichier est absent, tenter `tasks/debian_x86_64/main.yml` ;
+* si le fichier est absent, tenter `tasks/debian_11/main.yml` ;
+* si le fichier est absent, tenter `tasks/debian/main.yml` ;
+* si le fichier est absent, passer à la suite sans erreur.
 
 ## Intégration
 

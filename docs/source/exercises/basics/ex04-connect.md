@@ -89,6 +89,6 @@ sur le serveur auquel on se connecte.
 
 ## Ligne d'arrivée
 
-Félicitations vous venez d'effectuer votre premier ping Ansible. Si vous avez bien suivi tous les exercices de la section, vous
+Félicitations, vous venez d'effectuer votre premier ping Ansible. Si vous avez bien suivi tous les exercices de la section, vous
 l'avez fait depuis un projet au propre qui plus est. Vous avez maintenant un projet de travail sain avec lequel 
 nous allons continuer à jouer.
