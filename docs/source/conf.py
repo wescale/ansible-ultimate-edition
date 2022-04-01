@@ -17,8 +17,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.mathjax",
-    "sphinx.ext.viewcode",
-    "galaxie_docs_theme"
+    "sphinx.ext.viewcode"
 ]
 templates_path = ['_templates']
 exclude_patterns = []
