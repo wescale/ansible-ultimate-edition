@@ -6,11 +6,6 @@ sûr possible de le configurer afin de limiter son périmètre d'analyse ou les 
 
 C'est un must-have sur tout projet Ansible afin d'avoir un rapport objectif sur la qualité du code produit.
 
-```{admonition} Approfondir
-:class: seealso
-
-[Liste complète des règles Ansible-Lint](https://ansible-lint.readthedocs.io/en/latest/default_rules/)
-```
 
 ## Installation
 
@@ -20,6 +15,10 @@ Partant du principe que vous avez suivi les recommandations du chapitre sur [](/
 * Lancez la commande : `make env`
 
 ## Configuration
+
+Plutôt que de vous attaquer à la maîtrise des options CLI de `ansible-lint`, mieux vaut simplement rajouter un fichier de 
+de configuration `.ansible-lint`à la racine de votre projet. L'exemple donné si dessous peut convenir pour un grand nombre de projets
+mais pensez à approfondir votre maîtrise de l'outil en allant creuser les possibilités par vous-même.
 
 ```yaml
 # .ansible-lint
@@ -39,9 +38,9 @@ exclude_paths:
   - tests/
   - requirements.yml
   - molecule.yml
-parseable: true
-quiet: false
-verbosity: 1
+parseable: true     # Utiliser un format parseable de rapport
+quiet: false        # Limiter le contenu du rapport à son strict minimum.
+verbosity: 1        # Niveau de vrbosité du rapport
 #
 # Oblige les variables de boucles à être nommées avec ce préfix
 #
@@ -54,28 +53,35 @@ use_default_rules: true
 # Ignore toutes les règles listées dans cette 'skip_list'
 #
 skip_list:
-  - fqcn-builtins    # 
-  - meta-no-info     # No 'galaxy_info' found
-  - no-changed-when  # Commands should not change things if nothing needs doing
-  - no-tabs          # Most files should not contain tabs
-  - role-name        # Role name does not match ``^[a-z][a-z0-9_]+$`` pattern
+  - fqcn-builtins   # Pas besoin de surcharger le code avec des noms de module complet quand il 
+                    # s'agit de 'ansible.builtin.*'
+
+  - meta-no-info    # La plupart des projets internes n'ont pas besoin de renseigner un fichier
+                    # 'meta/main.yml' pour leur rôles. Á retirer si vous comptez publier.
 #
 # Certaines règles ont un tag 'opt-in', elles ne sont pas activées à moins de les inclure
 # dans cette 'enable_list'
 #
 enable_list:
-  - no-log-password
-  - no-same-owner
-  - yaml
+  - no-log-password # Vérifie tant que possible que des passwords ne soient pas loggés
+  - no-same-owner   # Vérifie que les transfert de fichier mentionne 'owner' et 'group'
+  - yaml            # Intègre un rapport Yaml-Lint dans le rapport de Ansible-Lint
 #
 # Règles à relever comme des Warning et non des Fautes
 #
 warn_list:
-  - skip_this_tag
-  - git-latest
-  - experimental     # experimental is included in the implicit list
+  - git-latest      # Les usages du module 'git' doivent metionner la gitref ciblée.
+  - experimental    # Relève les usages de modules Ansible marqués comme expérimentaux (par défaut)
 #
 # Désactive l'installation du requirements.yml
 #
 offline: true
 ```
+
+```{admonition} Approfondir
+:class: seealso
+
+* [Configurer Ansible-Lint](https://ansible-lint.readthedocs.io/en/latest/configuring/)
+* [Liste complète des règles Ansible-Lint](https://ansible-lint.readthedocs.io/en/latest/default_rules/)
+```
+
