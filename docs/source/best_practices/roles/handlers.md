@@ -68,8 +68,8 @@ Pour compléter le pattern, ajoutez **systématiquement** un appel au `meta: flu
   meta: flush_handlers
 ```
 
-Si on oublie ce flush de fin de rôle, il est possible qu'un autre rôle plante et le re-jeu de notre rôle ne détctera
-pas de modifications sur son périmètre et ne déclanchera donc pas les handlers.
+Si on oublie ce flush de fin de rôle, il est possible qu'un autre rôle plante et le re-jeu de notre rôle ne détectera
+pas de modifications sur son périmètre, donc ne lancera pas de `notify` et ne déclenchera pas les handlers.
 
 En appliquant cette technique on s'assure que chaque rôle ne déborde pas de son périmètre et a bien fini ses actions avant de 
 passer la main à un autre rôle.
