@@ -25,6 +25,8 @@ Si vous ne définissez PAS d'inventaire par défaut (clé de configuration `ANSI
 $ ansible-playbook playbooks/danger_zone.yml -i inventories/dev_env.inventory
 ```
 
+Cela peut être une réponse satisfaisante à notre problème de dinition de périmètre.
+
 ## Variabiliser les patterns de sélection
 
 Vous avez la possibilité d'intégrer des variables dans votre sélection de hosts au sein d'un playbook.

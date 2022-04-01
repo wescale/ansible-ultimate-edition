@@ -114,7 +114,9 @@ $ ansible-playbooks playbooks/exemple.yml --limit='web_servers:!centos_servers'
 ```{admonition} Perle de sagesse
 :class: important
 
-Si c'est trop complexe, c'est sûrement que c'est faux.
+If something is too complex to understand, it must be wrong.
+
+_Arjen Poutsma_, The Poutsma Principle
 ```
 
 
