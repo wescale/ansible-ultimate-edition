@@ -66,6 +66,9 @@ Pour compléter le pattern, ajoutez **systématiquement** un appel au `meta: flu
 
 - name: Toujours flush les handlers en dernière task de rôle
   meta: flush_handlers
+#
+# End-Of-File
+#
 ```
 
 Si on oublie ce flush de fin de rôle, il est possible qu'un autre rôle plante et le re-jeu de notre rôle ne détectera
