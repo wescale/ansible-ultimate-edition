@@ -42,7 +42,16 @@ parseable: true     # Utiliser un format parseable de rapport
 quiet: false        # Limiter le contenu du rapport à son strict minimum.
 verbosity: 1        # Niveau de vrbosité du rapport
 #
-# Oblige les variables de boucles à être nommées avec ce préfix
+# Oblige les variables de boucles à être nommées avec ce préfix, comme ceci :
+#
+#   - name: Exemple conforme
+#     debug:
+#       msg: "Élement courant {{ __current_name }}"
+#     loop:
+#       - "premier"
+#       - "second"
+#     loop_control:
+#       loop_var: "__current_name"
 #
 loop_var_prefix: "__current_"
 #
