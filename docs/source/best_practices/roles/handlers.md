@@ -25,9 +25,10 @@ Cette approche complexifie inutilement le code de vos rôles/playbooks en réimp
 handler. Un des arguments est que les handlers se déclenchent en fin d'exécution de playbook et donc diffèrent parfois trop
 le lancement de ces comportements conditionnels.
 
+
 ## Proposition
 
-En couplant la définition classique de handler ave l'usage du module **meta**, moins connu, on obtient l'effet désiré. Si on prend l'exemple d'un micro-playbook pour illustrer, cela donne :
+En couplant la définition classique de handler avec l'usage du module **meta**, moins connu, on obtient l'effet désiré. Si on prend l'exemple d'un micro-playbook pour illustrer, cela donne :
 
 ```yaml
 ---
@@ -53,6 +54,25 @@ En couplant la définition classique de handler ave l'usage du module **meta**, 
         name: ...
         state: restarted
 ```
+
+Pour compléter le pattern, ajoutez **systématiquement** un appel au `meta: flush_handlers` en fin de rôle :
+
+```yaml
+#
+# un_role/tasks/main.yml
+#
+
+[...]
+
+- name: Toujours flush les handlers en dernière task de rôle
+  meta: flush_handlers
+```
+
+Si on oublie ce flush de fin de rôle, il est possible qu'un autre rôle plante et le re-jeu de notre rôle ne détctera
+pas de modifications sur son périmètre et ne déclanchera donc pas les handlers.
+
+En appliquant cette technique on s'assure que chaque rôle ne déborde pas de son périmètre et a bien fini ses actions avant de 
+passer la main à un autre rôle.
 
 ## Intégration
 
