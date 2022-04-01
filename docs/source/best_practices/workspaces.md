@@ -1,6 +1,7 @@
 # Workspaces
 
 ```{admonition} Perle de sagesse
+:class: important
 L'erreur est humaine. Répéter l'erreur sur 50 serveurs d'un coup est DevOps.
 
 _@DEVOPS_BORAT_, Twitter, traduction libre.
