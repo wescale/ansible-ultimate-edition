@@ -39,8 +39,8 @@ exclude_paths:
   - requirements.yml
   - molecule.yml
 parseable: true     # Utiliser un format parseable de rapport
-quiet: false        # Limiter le contenu du rapport à son strict minimum.
-verbosity: 1        # Niveau de vrbosité du rapport
+quiet: false        # Limiter le contenu du rapport à son strict minimum
+verbosity: 1        # Niveau de verbosité du rapport
 #
 # Oblige les variables de boucles à être nommées avec ce préfix, comme ceci :
 #
@@ -86,6 +86,33 @@ warn_list:
 #
 offline: true
 ```
+
+## Exécution
+
+Pour lancer un scan de votre code, lancez simplement :
+
+```bash session
+$ pwd
+/home/user/ansible-workspaces/ultimate/training
+
+$ ansible-lint
+[...]
+roles/rproxy/defaults/main.yml:12: yaml no new line character at the end of file (new-line-at-end-of-file)
+roles/rproxy/meta/main.yml:6: yaml comment not indented like content (comments-indentation)
+roles/rproxy/tasks/install.yml:6: no-loop-var-prefix Role loop_var should use configured prefix.: rproxy_
+roles/rproxy/tasks/install.yml:30: no-loop-var-prefix Role loop_var should use configured prefix.: rproxy_
+roles/rproxy/tasks/install.yml:39: no-loop-var-prefix Role loop_var should use configured prefix.: rproxy_
+roles/rproxy/tasks/install.yml:49: no-loop-var-prefix Role loop_var should use configured prefix.: rproxy_
+roles/rproxy/tasks/install.yml:58: no-loop-var-prefix Role loop_var should use configured prefix.: rproxy_
+roles/rproxy/tasks/install.yml:75: unnamed-task All tasks should be named
+roles/rproxy/tasks/install.yml:75: yaml no new line character at the end of file (new-line-at-end-of-file)
+roles/rproxy/tasks/main.yml:5: yaml missing starting space in comment (comments)
+roles/rproxy/tasks/main.yml:20: unnamed-task All tasks should be named
+[...]
+Finished with 51 failure(s), 27 warning(s) on 128 files.
+```
+
+Il ne vous reste plus qu'à en faire l'intégration dans votre chaine de CI préférée pour avoir un contrôle de qualité en continue.
 
 ```{admonition} Approfondir
 :class: seealso
