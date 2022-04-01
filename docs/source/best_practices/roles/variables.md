@@ -63,7 +63,7 @@ Si d'aventure vous éprouvez le besoin qu'un rôle exporte des variables à dest
 de votre playbook :
 
 * Définissez ces variables depuis des tasks `set_fact` dans votre rôle 
-* Préfixez ces variables par un simple underscore (`_`) suivi par le nom du rôle et la mention `fact` (soit `_rolename_fact_*`).
+* Préfixez ces variables par le nom du rôle et la mention `fact` (soit `rolename_fact_*`).
 
 Là encore le but est de pouvoir identifier l'origine d'une variable au premier coup d'oeil. En période de debug, vous vous remercierez
 d'avoir adopté cette convention.
@@ -74,6 +74,6 @@ d'avoir adopté cette convention.
 Les variables nommées :
 
 * `rolename_*` : paramètres d'entrée définis dans `defaults/main.yml`
-* `_rolename_fact_*` : valeurs de sortie définies via le module `set_fact`
+* `rolename_fact_*` : valeurs de sortie définies via le module `set_fact`
 * `__rolename_*` : variables internes définies dans `vars/main.yml`
 ```
