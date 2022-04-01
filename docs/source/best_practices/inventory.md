@@ -116,7 +116,7 @@ $ ansible-playbooks playbooks/exemple.yml --limit='web_servers:!centos_servers'
 
 If something is too complex to understand, it must be wrong.
 
-_Arjen Poutsma_, The Poutsma Principle
+_Arjen Poutsma_, The Poutsma Principle, [Xebia Essential Cards](https://essentials.xebia.com/poutsma-principle/)
 ```
 
 
