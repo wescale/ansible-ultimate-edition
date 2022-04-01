@@ -104,7 +104,7 @@ Les groupes que vous façonnez dans votre inventaire doivent simplement refléte
 * quels sont les hosts qui se ressemblent ? Grouper les hosts d'un cluster semble évident.
 * quels sont les hosts qui s'assemblent ? Un groupe parent `application` pour englober 2 groupes `backend` et `frontend` peut être intéressant
 
-Il n'y a pas de véritable règle de design dans la mesure où il n'existe aucune norme sur l'organisation de machines au sein de réseaux. L'objectif à garder en tête est de savoir si vous avez besoin régulièrement d'utiliser les options de limitations de `ansible-playbook` c'est que votre inventaire n'est pas en adéquation avec vos usages.
+Il n'y a pas de véritable règle de design dans la mesure où il n'existe aucune norme sur l'organisation de machines au sein de réseaux. Garder en tête que si vous avez besoin régulièrement d'utiliser les options de limitations de `ansible-playbook`, c'est que votre design d'inventaire n'est pas en adéquation avec vos usages.
 
 ```bash session
 # Si vous voyez ce genre de commande souvent, retournez affiner votre inventaire.

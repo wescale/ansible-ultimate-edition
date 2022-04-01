@@ -49,7 +49,7 @@ $ ansible-playbook playbooks/danger_zone.yml -e env_name=production
 
 De cette façon, la variable sera disponible pour le playbook au bon moment et le playbook s'appliquera sur le groupe `production_webservers` (selon notre exemple).
 
-Les playbook Ansible peuvent servir à automatiser d'autres outils d'Infra-as-Code qui ont déjà ce comportement de workspace, comme Terraform, pensez à propager votre variable de workspace à ces outils pour un rendu plus homogène.
+Les playbooks Ansible peuvent servir à automatiser d'autres outils d'Infra-as-Code qui ont déjà ce comportement de workspace, comme Terraform, pensez à propager votre variable de workspace à ces outils pour un rendu plus homogène.
 
 ## S'appuyer sur l'environnement
 
