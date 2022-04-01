@@ -22,7 +22,8 @@ Tout projet Ansible contenant des playbooks doit être une collection.
 
 Le plus efficace est d'adopter une méthode de gestion de la configuration qui puisse convenir à Ansible mais également à d'autres
 outils qui seront impliqués dans notre développement. La méthode la plus tout-terrain est celle qui passe **par les variables
-d'environnement**. On peut configurer Ansible de cette façon, mais aussi :
+d'environnement**. Cela tombe bien c'est aussi une préconisation du manifeste "12-factor app". On peut configurer Ansible de cette façon,
+mais aussi :
 
 * Terraform (et l'immense majorité des providers Terraform) ;
 * AWS CLI ;
@@ -52,6 +53,7 @@ un top 15 des plus chronophages en fin d'exécution de playbook.
 :class: seealso
 
 * [Documentation Ansible - Configuration Settings](https://docs.ansible.com/ansible/latest/reference_appendices/config.html)
+* [the twelve-factor app - Configuration ](https://12factor.net/config)
 ```
 
 ## Configuration personnelle
