@@ -1,10 +1,10 @@
 # Concepts
 
 Ansible est un logiciel libre (GPLv3) d'automatisation à large spectre. Ansible est notamment très adapté
-pour la configuration et la gestion des ordinateurs. Il combine le déploiement de logiciels multi-hosts,
-l'exécution des tâches _ad hoc_ et la gestion de configuration.
+pour la configuration et la gestion des ordinateurs. Il combine le déploiement de logiciels multi-hosts et multi-os,
+l'exécution de tâches _ad hoc_ et la gestion de configuration.
 
-Il interagit avec les différents hosts à travers SSH (par défaut, de nombreuses options sont disponibles)
+Il interagit avec ces différents hosts à travers SSH (par défaut, de nombreuses options sont disponibles)
 et ne nécessite l'installation d'aucun logiciel supplémentaire sur ceux-ci.
 
 Le but principal du projet Ansible est de rester simple d'accès et d'utilisation. Le projet déploie également de gros
@@ -29,7 +29,7 @@ par des humains non formés à Ansible.
 
 Liste de machines avec lesquelles interagir, organisées en groupes. Un inventaire peut être :
 
-* statique : un fichier au format INI ou JSON
+* statique : un fichier au format INI, YAML ou JSON
 * dynamique : un retour JSON sur le stdout d'un programme à exécuter par Ansible
 
 **Exemple d'inventaire statique**
@@ -85,28 +85,6 @@ C'est la plus petite unité d'action disponible. Le résultat de son exécution 
     state: present
 ```
 
-### Playbook
-
-Liste d'objets Play. Un Play est une liste de rôles et/ou de tasks à appliquer sur un groupe de machines cibles.
-
-**Exemple de fichier playbook contenant 2 plays**
-```
----
-- hosts: web_servers
-  become: yes
-  tasks:
-    - service: 
-        name: sshd
-        state: stopped
-
-- hosts: web_servers
-  become: yes
-  tasks:
-    - service: 
-        name: sshd
-        state: started
-```
-
 ### Handler
 
 Task lancée en fin de play si "notifiée" par une autre task, c'est-à-dire si la task porte un attribut
@@ -149,6 +127,29 @@ Unité de réutilisation de code Ansible. Peut contenir des tasks, des handlers,
 │   └── test.yml 
 └── vars
     └── main.yml --> variables redéfinissables uniquement par option en ligne de commande
+```
+
+### Playbook
+
+Liste d'objets Play. Un Play est une liste de rôles et/ou de tasks à appliquer sur un groupe de machines cibles.
+
+**Exemple de fichier playbook contenant 2 plays**
+
+```
+---
+- hosts: web_servers
+  become: yes
+  tasks:
+    - service: 
+        name: sshd
+        state: stopped
+
+- hosts: web_servers
+  become: yes
+  tasks:
+    - service: 
+        name: sshd
+        state: started
 ```
 
 ### Collection
