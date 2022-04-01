@@ -39,8 +39,8 @@ nginx_server_name: "alpha"
 # vars/main.yml 
 #
 ---
-_nginx_site_config_path: "/etc/nginx/sites-availables/{{ nginx_server_name }}.conf"
-_nginx_site_link_path: "/etc/nginx/sites-enabled/{{ nginx_server_name }}.conf"
+__nginx_site_config_path: "/etc/nginx/sites-availables/{{ nginx_server_name }}.conf"
+__nginx_site_link_path: "/etc/nginx/sites-enabled/{{ nginx_server_name }}.conf"
 ```
 
 On offre à l'utilisateur la possibilité de redéfinir le nom du serveur que nous allons configurer, mais les chemins des 
