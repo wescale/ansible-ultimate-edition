@@ -48,10 +48,13 @@ On peut voir que la commande d'init a créer un répertoire `molecule` et plusie
 
 ## Configuration
 
-Allez modifier le fichier `molecule.yml` pour qu'il ressemble à ceci :
+Allez modifier le fichier `roles/a_tester/molecule/default/molecule.yml` pour qu'il ressemble à ceci :
 
 ```yaml
 ---
+#
+# roles/a_tester/molecule/default/molecule.yml
+#
 driver:
   name: docker
 platforms:
@@ -78,6 +81,9 @@ Pour que Molecule prenne en charge la construction du conteneur qui sert de mach
 au chemin par défaut pour le scénario, `roles/a_tester/molecule/default/Dockerfile.j2`, avec ce contenu :
 
 ```
+#
+# roles/a_tester/molecule/default/Dockerfile.j2
+#
 ARG DEBIAN_TAG=11-slim
 FROM debian:$DEBIAN_TAG
 ARG DEBIAN_FRONTEND=noninteractive
@@ -106,7 +112,9 @@ Nous allons maintenant remplir les tasks de norte rôle de test dans `roles/a_te
 
 ```yaml
 ---
-# tasks file for a_tester
+#
+# roles/a_tester/tasks/main.yml
+#
 - name: Installation de sshd
   apt:
     name: openssh-server
@@ -127,6 +135,9 @@ valider l'état de notre machine de test :
 
 ```yaml
 ---
+#
+# roles/a_tester/molecule/default/verify.yml
+#
 - name: Verify
   hosts: all
   gather_facts: false
