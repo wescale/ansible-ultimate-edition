@@ -46,9 +46,11 @@ molecule/
 
 On peut voir que la commande d'init a créé un répertoire `molecule/default/` et plusieurs fichiers :
 
-* `molecule.yml` : fichier de configuration des environnements de test et des options molecule pour ce scénario
-* `converge.yml` : playbook qui sera appliqué au environnements de test
-* `verify.yml` : playbook qui sera joué pour vérifier que `converge.yml` a bien effectué les modifications attendues
+|                |                                                                                                      |  
+| -------------- | ---------------------------------------------------------------------------------------------------- |
+| `molecule.yml` | fichier de configuration des environnements de test et des options molecule pour ce scénario.        |
+| `converge.yml` | playbook qui sera appliqué au environnements de test                                                 |
+| `verify.yml`   | playbook qui sera joué pour vérifier que `converge.yml` a bien effectué les modifications attendues. |
 
 ## Configuration
 
