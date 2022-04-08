@@ -12,6 +12,7 @@ rôles qui mettent en place des services systèmes (spoiler : c'est le cas 90% d
 
 ## Prérequis 
 
+* Avoir effectué l'[](ex05-molecule-install.md)
 * Avoir un [démon Docker installé](https://docs.docker.com/engine/install/) sur votre machine de travail.
 * Que votre [utilisateur de travail ait la permission de gérer Docker](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user) (pour éviter de devoir lancer vos tests en `root`).
 * Avoir un role à tester, pour l'exemple nous prendrons un rôle fictif placé dans le répertoire `roles/a_tester`.
@@ -21,9 +22,12 @@ rôles qui mettent en place des services systèmes (spoiler : c'est le cas 90% d
 
 Pour démarrer avec Molecule :
 
-* placez vous à la racine d'un rôle, disons `roles/a_tester` pour l'exemple.
+* Placez vous à la racine du rôle que vous souhaitez tester :
 
 ```bash session
+$ pwd 
+/home/user/ansible-workspaces/ultimate/training
+
 $ cd roles/a_tester
 
 $ molecule init scenario --driver-name=docker default
@@ -40,7 +44,7 @@ molecule/
 1 directory, 3 files
 ```
 
-On peut voir que la commande d'init a créer un répertoire `molecule` et plusieurs fichiers :
+On peut voir que la commande d'init a créé un répertoire `molecule/default/` et plusieurs fichiers :
 
 * `molecule.yml` : fichier de configuration des environnements de test et des options molecule pour ce scénario
 * `converge.yml` : playbook qui sera appliqué au environnements de test
@@ -106,9 +110,12 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
 ENTRYPOINT ["/lib/systemd/systemd"]
 ```
 
+Nous construisons **volontairement** un conteneur qui démarre avec `systemd` pour pouvoir tester la mise en place de services
+système avec Ansible.
+
 ## Coder le comportement du rôle
 
-Nous allons maintenant remplir les tasks de norte rôle de test dans `roles/a_tester/tasks/main.yml` :
+Nous allons maintenant remplir les tasks de notre rôle de test dans `roles/a_tester/tasks/main.yml` :
 
 ```yaml
 ---
@@ -173,7 +180,9 @@ Delete docker networks(s) ----------------------------------------------- 0.02s
 INFO     Pruning extra files from scenario ephemeral directory
 ```
 
-Le workflow complet peut prendre un peu de temps à tourner pour le premier lancement. Si `molecule test` s'exécute sans erreur, notre test est valide.
+Le workflow complet peut prendre un peu de temps à tourner pour le premier lancement (construction du conteneur oblige). 
+
+Si `molecule test` s'exécute sans erreur, notre test est valide.
 
 ## Ligne d'arrivée
 
