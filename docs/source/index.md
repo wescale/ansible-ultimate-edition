@@ -11,4 +11,5 @@ basics/__index.md
 craftsmanship/__index.md
 best_practices/__index.md
 exercises/__index.md
+howtos/__index.md
 ```
