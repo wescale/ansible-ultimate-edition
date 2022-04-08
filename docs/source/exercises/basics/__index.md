@@ -1,8 +1,8 @@
-# Les bases
+# Fondamentaux
 
 Premier chapitre des exercices où l'on vient configurer le poste de travail pour se placer dans les 
-meilleures conditions pour travailler. Ces exercices s'enchaîne et se complètent pour vous permettre
-de savoir monter un projet Ansible vierge propre.
+meilleures conditions pour travailler. Ces exercices s'enchaînent et se complètent pour vous apprendre
+une méthodologie de travail avec Ansible.
 
 ```{toctree}
 :maxdepth: 1

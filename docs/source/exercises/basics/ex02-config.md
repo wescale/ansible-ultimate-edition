@@ -45,11 +45,13 @@ Nous allons maintenant configurer quelques comportements basiques d'Ansible en r
 
 ```bash session
 $ cat >> .envrc <<EOF
+export DIRENV_TMP_DIR="${PWD}/.direnv"
 export ANSIBLE_STDOUT_CALLBACK="ansible.posix.debug"
 export ANSIBLE_INVENTORY="inventory"
 export ANSIBLE_FORKS="10"
 export ANSIBLE_ROLES_PATH="roles"
-export ANSIBLE_CALLBACK_WHITELIST="timer,profile_tasks"
+export ANSIBLE_COLLECTIONS_PATHS="${DIRENV_TMP_DIR}"
+export ANSIBLE_CALLBACKS_ENABLED="timer,profile_tasks"
 EOF
 
 direnv: error /home/user/Workspaces/WeScale/ansible-ultimate-edition/.envrc is blocked. Run `direnv allow` to approve its content
