@@ -14,5 +14,6 @@ _Albert Einstein_, Mathématicien, Physicien, Scientifique (1879 - 1955)
 
 basics/__index.md
 testing/__index.md
+pipelines/__index.md
 ```
 
