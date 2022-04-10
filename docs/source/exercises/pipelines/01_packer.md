@@ -15,16 +15,19 @@ Cet exercice a été validé sur Gitlab.com, le service SaaS de Gitlab. Il vous 
 
 Notre image doit comporter tout le nécessaire pour construire des [AMI AWS](https://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/AMIs.html). 
 
-
 Créer un projet Gitlab vierge. Ce projet comportera un fichier Packer, un playbook Ansilbe et son requirements.yml pour la gestion des dépendances?
 
-## fichier quick-start.pkr.hcl
+
+## Fichier `quick-start.pkr.hcl`
+
 ```{admonition} VPC par défaut
 :class: tip
 
-Le fichier de configuration Packer suivant fonctionne dans le cas où le VPC par défaut existe dans le compte AWS cible. Si vous ne disposez pas de VPC par défaut utiliser le fichier de configuration n°2.
+Le fichier de configuration Packer suivant fonctionne dans le cas où le VPC par défaut existe dans le compte AWS cible. 
+Si vous ne disposez pas de VPC par défaut utiliser le fichier de configuration n°2.
 ```
-* Example n°1 (VPC par défaut requis) :
+
+* Exemple n°1 (VPC par défaut requis) :
 
 ```hcl
 packer {
@@ -35,7 +38,6 @@ packer {
     }
   }
 }
-
 
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
@@ -61,7 +63,8 @@ build {
 
 Le fichier de configuration Packer suivant fonctionne dans le cas où le VPC par défaut n'existe pas. Dans ce cas vous devez spécifier à Packer le VPC et le sous-réseau à utiliser.
 ```
-* Example n°2
+
+* Exemple n°2
 
 ```hcl
 source "amazon-ebs" "quick-start" {
@@ -96,9 +99,10 @@ build {
   }  
 }
 ```
+
 ## Fichiers Ansible
 
-Organiser les fichiers Ansible en suivant les bonnes pratiques présentés içi.
+Organiser les fichiers Ansible en suivant les bonnes pratiques présentées ici.
 
 Ajoutons le playbook *ansible/playbook.yml* suivant :
 
@@ -120,7 +124,7 @@ Le rôle *ansible-role-security* est un rôle public qui permet de configurer et
   version: "2.1.0"
 ```
 
-A ce stade vous devriez avoir l'arboresence suivante dans votre projet Gitlab :
+A ce stade vous devriez avoir l'arborescence suivante dans votre projet Gitlab :
 ```sh
 .
 ├── README.md
@@ -135,6 +139,7 @@ A ce stade vous devriez avoir l'arboresence suivante dans votre projet Gitlab :
 ## Configuration Gitlab-CI
 
 Dans le menu *Settings* --> *CI/CD* déroulez la section *Variables* afin d'ajouter les variables d'environment suivantes :
+
 * AWS_ACCESS_KEY_ID
 * AWS_SECRET_ACCESS_KEY
 * AWS_DEFAULT_REGION
