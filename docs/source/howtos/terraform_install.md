@@ -7,9 +7,7 @@ devrait se faire :
 * via `direnv` ou `make`, qui sont les racines de manipulation de l'environnement de travail
 
 Il existe bien des méthodes différentes pour assurer l'installation de multiples version et une bascule automatique en fonction
-du projet. 
-
-La méthode présentée ici a l'avantage de rester dans la logique initiale et donc de demander un minimum de connaissances
+du projet. La méthode présentée ici a l'avantage de rester dans la logique initiale et donc de demander un minimum de connaissances
 supplémentaires. Cela peut être vu comme restrictif par certains qui maîtrisent d'autres techniques mais cela reste un avantage 
 lorsqu'on a une promotion de débutant à former.
 
