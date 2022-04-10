@@ -1,4 +1,4 @@
-# Ex01 - Découverte intégration Gitlab-CI
+# Intégration Gitlab-CI
 
 ```{admonition} Objectif
 :class: hint
