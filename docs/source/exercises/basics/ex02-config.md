@@ -1,4 +1,4 @@
-# Ex02 - Configurer un projet
+# Configurer un projet
 
 ```{admonition} Objectif
 :class: hint

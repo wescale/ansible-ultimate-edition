@@ -1,4 +1,4 @@
-# Ex01 - Créer un projet
+# Créer un projet
 
 ```{admonition} Objectif
 :class: hint
@@ -37,7 +37,7 @@ $ ansible-galaxy collection init ultimate.training
 
 $ cd ultimate/training
 
-$ tree
+$ tree -a
 .
 ├── docs
 ├── galaxy.yml

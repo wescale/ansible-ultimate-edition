@@ -1,4 +1,4 @@
-# Ex04 - Premier host cible
+# Premier host cible
 
 ```{admonition} Objectif
 :class: hint

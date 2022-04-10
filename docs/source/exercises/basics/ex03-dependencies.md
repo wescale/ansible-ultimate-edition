@@ -1,4 +1,4 @@
-# Ex03 - Gérer les dépendances
+# Gérer les dépendances
 
 ```{admonition} Objectif
 :class: hint
@@ -46,15 +46,15 @@ $ direnv allow .
 Créez un fichier `requirements.txt` avec notre version préférée d'Ansible pour le projet.
 
 ```bash session
-$ echo 'ansible-core==2.12.3' >> requirements.txt
+$ echo 'ansible-core==2.12.4' >> requirements.txt
 ```
 
 Une fois ceci fait, nous pouvons rapatrier les dépendances listées avec la commande :
 
 ```bash session
 $ pip3 install -U --no-cache-dir -r requirements.txt 
-Collecting ansible-core==2.12.3
-  Downloading ansible-core-2.12.3.tar.gz (7.8 MB)
+Collecting ansible-core==2.12.4
+  Downloading ansible-core-2.12.4.tar.gz (7.8 MB)
      |████████████████████████████████| 7.8 MB 5.6 MB/s 
 [...]
 Successfully installed MarkupSafe-2.1.1 PyYAML-6.0 ansible-core-2.12.3 cffi-1.15.0 cryptography-36.0.2 jinja2-3.1.1 packaging-21.3 pycparser-2.21 pyparsing-3.0.7 resolvelib-0.5.4
