@@ -195,6 +195,8 @@ On utilise une image Docker qui contient tout le nécessaire dont Packer, Ansibl
 
 ## Ligne d'arrivée
 
-Féliciations vous venez de configurer votre première chaîne d'intégration et de déploiment continue pour la construction des AMI AWS via Packer et Ansible ! 
+Féliciations vous venez de configurer votre première chaîne d'intégration et de déploiment continue pour la construction des 
+AMI AWS via Packer et Ansible ! 
 
-Mais attention, il reste encore du chemin avant d'aller en production ! En effet nous avons posé les bases, nous iront plus loin dans une prochaine section. 
+Mais attention, il reste encore du chemin avant d'aller en production ! En effet nous avons posé les bases, nous irons 
+plus loin dans une prochaine section. 

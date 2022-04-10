@@ -1,9 +1,10 @@
 # Packer
 
 Hashicorp Packer est un outil qui vous permet de créer des images de machine identiques pour différentes plateformes, à partir d'un modèle unique.
+
 Très utile pour le déploiement de masse, en adoptant le principe de "golden image". C'est à dire que l'on va construire l'image avec des composants testés et validés pour la mise en production, et cette image sera la source pour déployer toutes les machines virtuelles ou installer un ensemble de serveurs physiques.
 
-La force de Packer réside dans le fait qu'il soit relativement simple à utiliser, et possède de nombreuses extensions dont un provisionner Ansible.
+La force de Packer réside dans le fait qu'il soit relativement simple à utiliser, et possède de nombreuses extensions (dont un provisionner Ansible).
 
 ```{admonition} Approfondir
 :class: seealso
@@ -15,6 +16,7 @@ La force de Packer réside dans le fait qu'il soit relativement simple à utilis
 ## Provisioner 
 
 Un provisioner utilise des logiciels intégrés et tiers pour installer et configurer l'image de la machine après le démarrage . Un provisionner prépare le système pour l'utilisation, avec par exemple :
+
 * installation de paquets
 * compilation de modules du kernel
 * création d'utilisateurs
@@ -28,7 +30,6 @@ Le mode de fonctionnement implique que le code Ansible soit sur votre machine de
 Ce provisionner est très utile dans le cas où vous devez construire des images systèmes pour vos instances de machine virtuelles. 
 
 Prenons l'exemple avec la création d'une image ISO pour une machine virtuelle compatible Virtualbox :
-
 
 On créer le fichier ansible-remote.json :
 
@@ -50,7 +51,8 @@ On créer le fichier ansible-remote.json :
   ]
 }
 ```
-On créer le playbook :
+
+On crée le playbook :
 
 ```yaml
 ---
@@ -81,16 +83,14 @@ packer build ansible-remote.json
 
 Packer va utiliser les APIs de Docker afin de créer une image.
 
-Le résultat de ce build sera une image Docker Debian 11 avec Apache installé, exporté dans le fichier : image-builded-by-packer.tar
+Le résultat de ce build sera une image Docker Debian 11 avec Apache installé, exporté dans le fichier `image-builded-by-packer.tar`.
 
 
 ### Provisioner Ansible Local
 
-Le provisoner Ansible Local utilise le mode push. A l'inverse du mode pull, ce sont directement les machines cibles qui exécutent le code Ansible et appliquent les changements en local, sans passer par une connexion SSH. 
+Le provisioner Ansible Local utilise le mode push. A l'inverse du mode pull, ce sont directement les machines cibles qui exécutent le code Ansible et appliquent les changements en local, sans passer par une connexion SSH. 
 
 Cela implique que Ansible soit pré-installé sur les machines cibles.
-
-
 
 ```json
 {
@@ -133,8 +133,8 @@ packer build ansible-local.json
 
 Packer va utiliser les APIs de Docker afin de créer une image.
 
-Le résultat de ce build sera une image Docker Debian 11 avec l'afficahge d'un message "mushroom", exporté dans le fichier : image-builded-by-packer.tar
-
+Le résultat de ce build sera une image Docker Debian 11 avec l'affichage d'un message "mushroom", 
+exporté dans le fichier `image-builded-by-packer.tar`
 
 ```{admonition} Approfondir
 :class: seealso
