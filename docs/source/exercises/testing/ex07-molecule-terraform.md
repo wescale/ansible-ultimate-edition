@@ -54,6 +54,100 @@ On peut voir que la commande d'init a créé un répertoire `molecule/default/` 
 
 ## Terraforming
 
+Nous allons maintenant ajouter le Terraform nécessaire pour simuler un serveur acessible en SSH avec un conteneur Docker local. Il s'agit de techniques dédiées 
+aux tests, à proscrire dans des contexte de déploiements qu'ils soient.
+
+Créez un répertoire pour hébergé le code Terraform :
+
+```bash session
+$ pwd 
+/home/user/ansible-workspaces/ultimate/training/roles/a_tester
+
+$ mkdir -p molecule/default/terraform
+```
+Créez et emplissez les fichiers suivants (les chemins attendus sont en en-tête de chaque bloc) :
+
+```bash
+#
+# roles/a_tester/molecule/default/terraform/Dockerfile
+# 
+ARG DEBIAN_TAG=11-slim
+FROM debian:$DEBIAN_TAG
+ARG DEBIAN_FRONTEND=noninteractive
+ARG ROOT_PUBLIC_KEY=to-be-defined
+RUN set -eux; \
+  apt-get update && apt-get upgrade && apt-get dist-upgrade; \
+  apt-get install --no-install-recommends -y apt-utils \
+  curl ca-certificates sudo \
+  python python3 python3-apt locales \
+  systemd systemd-sysv libpam-systemd dbus dbus-user-session openssh-server; \
+  localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8; \
+  localedef -i fr_FR -c -f UTF-8 -A /usr/share/locale/locale.alias fr_FR.UTF-8
+ENV LANG fr_FR.utf8
+RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
+  /etc/systemd/system/*.wants/* \
+  /lib/systemd/system/local-fs.target.wants/* \
+  /lib/systemd/system/sockets.target.wants/*udev* \
+  /lib/systemd/system/sockets.target.wants/*initctl* \
+  /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
+  /lib/systemd/system/systemd-update-utmp*; \
+  mkdir -p /var/run/sshd /root/.ssh
+RUN systemctl enable ssh
+RUN echo $ROOT_PUBLIC_KEY > /root/.ssh/authorized_keys
+EXPOSE 22
+ENTRYPOINT ["/lib/systemd/systemd"]
+```
+
+```hcl
+#
+# roles/a_tester/molecule/default/terraform/main.tf
+# 
+# Chargement des providers nécessaires
+terraform {
+  required_providers {
+    docker = { source = "kreuzwerker/docker", version = "2.16.0" }
+    tls    = { source = "hashicorp/tls", version = "3.3.0" }
+  }
+}
+
+locals {
+  base_name          = "ultimate"
+  container_name     = "fake-server"
+  root_key_algorithm = "ED25519"
+}
+
+# Génération de clé pour notre serveur
+resource "tls_private_key" "root" {
+  algorithm = local.root_key_algorithm
+}
+
+# Construction du conteneur de fake-server local
+resource "docker_image" "fake_server" {
+  name = local.base_name
+  build {
+    path      = "."
+    tag       = ["${local.base_name}:${local.container_name}"]
+    build_arg = { ROOT_PUBLIC_KEY : tls_private_key.root.public_key_openssh }
+  }
+}
+
+# Lancement du conteneur
+resource "docker_container" "fake_server" {
+  name       = local.container_name
+  image      = docker_image.fake_server.latest
+  privileged = true
+}
+
+output "ipv4" {
+  value = docker_container.fake_server.ip_address
+}
+
+output "root_private_key" {
+  value     = tls_private_key.root.private_key_openssh
+  sensitive = true
+}
+```
+
 ## Intégration Molecule
 
 ## Code des tests

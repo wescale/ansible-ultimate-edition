@@ -13,3 +13,12 @@
 
 * Super Doudou Ninja
 
+
+```{admonition} Mention spéciale
+:class: important
+
+Un grand merci à tous les gens avec qui nous avons interagi au fil de nos missions, meetups, conférences, etc. C'est grâce à tous ces échanges que nous progressons.
+``` 
+
+
+
