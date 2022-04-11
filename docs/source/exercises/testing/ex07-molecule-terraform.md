@@ -67,6 +67,8 @@ $ mkdir -p molecule/default/terraform
 ```
 Créez et emplissez les fichiers suivants (les chemins attendus sont en en-tête de chaque bloc) :
 
+* Un Dockerfile pour notre instance de serveur.
+
 ```bash
 #
 # roles/a_tester/molecule/default/terraform/Dockerfile
@@ -98,6 +100,7 @@ EXPOSE 22
 ENTRYPOINT ["/lib/systemd/systemd"]
 ```
 
+* Le strict minimum de code Terraform pour construire le conteneur, le lancer et récupérer les informations de connexion.
 ```hcl
 #
 # roles/a_tester/molecule/default/terraform/main.tf
@@ -142,7 +145,11 @@ output "ipv4" {
   value = docker_container.fake_server.ip_address
 }
 
-output "root_private_key" {
+output "user" {
+  value = "root"
+}
+
+output "user_private_key" {
   value     = tls_private_key.root.private_key_openssh
   sensitive = true
 }
