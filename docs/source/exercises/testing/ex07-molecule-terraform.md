@@ -65,7 +65,8 @@ $ pwd
 
 $ mkdir -p molecule/default/terraform
 ```
-Créez et emplissez les fichiers suivants (les chemins attendus sont en en-tête de chaque bloc) :
+
+Créez et remplissez les fichiers suivants (les chemins attendus sont en en-tête de chaque bloc) :
 
 * Un Dockerfile pour notre instance de serveur.
 
@@ -101,11 +102,11 @@ ENTRYPOINT ["/lib/systemd/systemd"]
 ```
 
 * Le strict minimum de code Terraform pour construire le conteneur, le lancer et récupérer les informations de connexion.
+
 ```hcl
 #
 # roles/a_tester/molecule/default/terraform/main.tf
 # 
-# Chargement des providers nécessaires
 terraform {
   required_providers {
     docker = { source = "kreuzwerker/docker", version = "2.16.0" }
@@ -114,17 +115,16 @@ terraform {
 }
 
 locals {
-  base_name          = "ultimate"
-  container_name     = "fake-server"
+  base_name          = "molecule"
+  container_name     = "${terraform.workspace}"
   root_key_algorithm = "ED25519"
+  identity_file      = "${abspath(path.module)}/${terraform.workspace}.key"
 }
 
-# Génération de clé pour notre serveur
 resource "tls_private_key" "root" {
   algorithm = local.root_key_algorithm
 }
 
-# Construction du conteneur de fake-server local
 resource "docker_image" "fake_server" {
   name = local.base_name
   build {
@@ -134,30 +134,195 @@ resource "docker_image" "fake_server" {
   }
 }
 
-# Lancement du conteneur
+resource "null_resource" "private_key" {
+  provisioner "local-exec" {
+    command = "cat > ${local.identity_file} <<EOF\n${tls_private_key.root.private_key_openssh}\nEOF"
+  }
+  provisioner "local-exec" {
+    command = "chmod 600 ${local.identity_file}"
+  }
+}
+
 resource "docker_container" "fake_server" {
   name       = local.container_name
   image      = docker_image.fake_server.latest
   privileged = true
 }
 
-output "ipv4" {
-  value = docker_container.fake_server.ip_address
-}
-
-output "user" {
-  value = "root"
-}
-
-output "user_private_key" {
-  value     = tls_private_key.root.private_key_openssh
-  sensitive = true
-}
+output "address" { value = docker_container.fake_server.ip_address }
+output "user" { value = "root" }
+output "identity_file" { value = local.identity_file }
+output "instance" { value = terraform.workspace }
+output "port" { value = 22 }
 ```
 
 ## Intégration Molecule
 
+Maintenant que nous avons de quoi démarrer un serveur local accessible en SSH, il faut l'intégrer dans le cycle de gestion de Molecule.
+
+* Remplacez le contenu du fichier `roles/a_tester/molecule/default/create.yml` par :
+
+```yaml
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ molecule_no_log }}"
+  tasks:
+
+    - name: Create the test environment
+      terraform:
+        project_path: "{{ playbook_dir }}/terraform"
+        force_init: true
+        workspace: "{{ item.name }}"
+        state: present
+      register: server
+      loop: "{{ molecule_yml.platforms }}"
+
+    - when: server.changed | default(false) | bool
+      block:
+        - name: Populate instance config dict
+          set_fact:
+            instance_conf_dict:
+              instance: "{{ item.outputs.instance.value }}"
+              address: "{{ item.outputs.address.value }}"
+              user: "{{ item.outputs.user.value }}"
+              port: "{{ item.outputs.port.value }}"
+              identity_file: "{{ item.outputs.identity_file.value }}"
+          with_items: "{{ server.results }}"
+          register: instance_config_dict
+
+        - debug:
+            var: instance_conf_dict
+        - name: Convert instance config dict to a list
+          set_fact:
+            instance_conf: "{{ instance_config_dict.results | map(attribute='ansible_facts.instance_conf_dict') | list }}"
+
+        - name: Dump instance config
+          copy:
+            content: |
+              # Molecule managed
+
+              {{ instance_conf | to_json | from_json | to_yaml }}
+            dest: "{{ molecule_instance_config }}"
+            mode: 0600
+```
+
+* Remplacez le contenu du fichier `roles/a_tester/molecule/default/destroy.yml` par :
+
+```yaml
+---
+- name: Destroy
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ molecule_no_log }}"
+  tasks:
+    - name: Destroy the test environment
+      terraform:
+        project_path: "{{ playbook_dir }}/terraform"
+        force_init: true
+        workspace: "{{ item.name }}"
+        state: absent
+      register: server
+      loop: "{{ molecule_yml.platforms }}"
+ 
+    - name: Populate instance config
+      set_fact:
+        instance_conf: {}
+
+    - name: Dump instance config
+      copy:
+        content: |
+          # Molecule managed
+
+          {{ instance_conf | to_json | from_json | to_yaml }}
+        dest: "{{ molecule_instance_config }}"
+        mode: 0600
+      when: server.changed | default(false) | bool
+```
+
+## Code du rôle
+
+* Afin d'avoir quelque chose à tester, remplissez le fichier de tasks du rôles :
+
+```yaml
+---
+#
+# roles/a_tester/tasks/main.yml
+#
+- name: Installation de nginx
+  apt:
+    name: nginx
+    update_cache: yes
+
+- name: Activation de nginx
+  service:
+    name: nginx
+    state: started
+    enabled: true
+```
+
 ## Code des tests
+
+* Enfin, remplissez le fichier de vérification molecule :
+
+```yaml
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Installation de nginx
+    apt:
+      name: nginx
+    register: nginx_install
+
+  - name: Activation de nginx
+    service:
+      name: nginx
+      state: started
+      enabled: true
+    register: nginx_enable
+
+  - assert:
+      that:
+        - nginx_install is not changed
+        - nginx_enable is not changed
+```
+
+## Test complet
+
+Tout est en place, vous pouvez maintenant lancer un test bout en bout avec les commandes suivantes :
+
+```bash session
+$ pwd
+/home/user/ansible-workspaces/ultimate/training/roles/a_tester
+
+$ molecule test
+INFO     default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+INFO     Performing prerun...
+INFO     Set ANSIBLE_LIBRARY=/home/user/.cache/ansible-compat/9c82a6/modules:/home/user/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATHS=/home/user/.cache/ansible-compat/9c82a6/collections:/home/user/ansible-workspaces/ultimate/training/.direnv:/home/user/ansible-workspaces/ultimate/training/.direnv
+INFO     Set ANSIBLE_ROLES_PATH=/home/user/.cache/ansible-compat/9c82a6/roles:/home/user/ansible-workspaces/ultimate/training/roles/a_tester/roles:roles
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > lint
+INFO     Lint is disabled.
+INFO     Running default > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running default > Destroy
+[...]
+===============================================================================
+Destroy the test environment -------------------------------------------- 2.74s
+Dump instance config ---------------------------------------------------- 0.34s
+Populate instance config ------------------------------------------------ 0.02s
+INFO     Pruning extra files from scenario ephemeral directory
+```
 
 ## Ligne d'arrivée
 
+Vous avez maintenant un workflow complet de Molecule qui intègre Terraform comme implémentation du driver `delegated`. Libre à vous 
+d'adapter le code Terraform pour pouvoir lancer vos tests Molecule directement sur AWS, GCP ou tout autre founisseur d'infrastructure.

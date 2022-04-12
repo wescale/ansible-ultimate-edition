@@ -28,19 +28,6 @@ Pour éviter des problèmes communs de construction de package Pip, commencez pa
 $ pip3 install -U pip wheel setuptools --no-cache-dir 
 ```
 
-Afin de bien isoler nos dépendances Ansible, il faut rajouter à la configuration commune du projet (dans le `.envrc`) :
-
-```bash
-export DIRENV_TMP_DIR="${PWD}/.direnv"
-export ANSIBLE_COLLECTIONS_PATHS="${DIRENV_TMP_DIR}"
-```
-
-Et valider la nouvelle version de notre `.envrc` auprès de direnv avec la commande :
-
-```bash session
-$ direnv allow .
-```
-
 ## Création d'un fichier de requirements Pip
 
 Créez un fichier `requirements.txt` avec notre version préférée d'Ansible pour le projet.
@@ -66,15 +53,16 @@ Créez un fichier `requirements.yml` avec un rôle et une collection tirés de l
 
 ```yaml
 ---
+# Install roles from Ansible Galaxy.
 roles:
-  # Install a role from Ansible Galaxy.
   - name: geerlingguy.java
     version: 1.9.6
 
+# Install collections from Ansible Galaxy.
 collections:
-  # Install a collection from Ansible Galaxy.
   - name: community.general
     version: 4.5.0
+  - name: ansible.posix
 ```
 
 Une fois ceci fait, nous pouvons rapatrier les dépendances listées avec la commande :
@@ -94,7 +82,7 @@ Installing 'community.general:4.5.0' to '/home/user/ansible-workspaces/ultimate/
 community.general:4.5.0 was installed successfully
 ```
 
-Vous pouvez observer que la collection s'est installée dans un sous-répertoire de `.direnv` et que le rôle est installè dans votre sous-répertoire `roles`.
+Vous pouvez observer que la collection s'est installée dans un sous-répertoire de `.direnv` et que le rôle est installé dans votre sous-répertoire `roles`.
 
 ## Création d'un Makefile basique pour simplifier la mise à jour des dépendances
 
