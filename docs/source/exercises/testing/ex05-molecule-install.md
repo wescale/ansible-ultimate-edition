@@ -11,7 +11,14 @@ Partant du principe que vous avez suivi les recommandations du chapitre sur [](/
 * Dans le fichier `requirements.txt` de votre projet, ajoutez une ligne :
 
 ```
-molecule[docker]
+molecule[docker]==3.5.2
+```
+
+```{admonition} Note
+:class: note
+
+Cette dépendances est fixée sur 3.5.2 pour des problèmes de bugs non résolus au moment de la rédaction. 
+Cela est destiné à changer.
 ```
 
 * Dans le fichier `requirements.yml` de votre projet, ajoutez la collection `community.docker` :
