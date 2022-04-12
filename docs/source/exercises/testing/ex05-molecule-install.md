@@ -11,7 +11,8 @@ Partant du principe que vous avez suivi les recommandations du chapitre sur [](/
 * Dans le fichier `requirements.txt` de votre projet, ajoutez une ligne :
 
 ```
-molecule[docker]==3.5.2
+molecule==3.5.2
+molecule-docker
 ```
 
 ```{admonition} Note
@@ -32,7 +33,7 @@ collections:
 
 ## Validation
 
-Molecule, ainsi que le driver Molecule sont maintenant installés. Vous pouvez le vérifier en lançant :
+Molecule, ainsi que le driver Docker sont maintenant installés. Vous pouvez le vérifier en lançant :
 
 ```bash session
 $ molecule --version
