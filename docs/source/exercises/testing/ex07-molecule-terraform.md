@@ -47,7 +47,7 @@ On peut voir que la commande d'init a créé un répertoire `molecule/default/` 
 |                |                                                                                                      |  
 | -------------- | ---------------------------------------------------------------------------------------------------- |
 | `molecule.yml` | fichier de configuration des environnements de test et des options molecule pour ce scénario.        |
-| `converge.yml` | playbook qui sera appliqué au environnements de test                                                 |
+| `converge.yml` | playbook qui sera appliqué aux environnements de test                                                 |
 | `verify.yml`   | playbook qui sera joué pour vérifier que `converge.yml` a bien effectué les modifications attendues. |
 | `create.yml`   | playbook qui sera lancé pour la création des environnements de test                                  |
 | `destroy.yml`  | playbook qui sera lancé pour la destruction des environnements de test                               |
@@ -55,7 +55,7 @@ On peut voir que la commande d'init a créé un répertoire `molecule/default/` 
 ## Terraforming
 
 Nous allons maintenant ajouter le Terraform nécessaire pour simuler un serveur acessible en SSH avec un conteneur Docker local. Il s'agit de techniques dédiées 
-aux tests, à proscrire dans des contexte de déploiements qu'ils soient.
+aux tests, à proscrire dans des contexte de déploiements quels qu'ils soient.
 
 Créez un répertoire pour hébergé le code Terraform :
 
@@ -266,10 +266,13 @@ Maintenant que nous avons de quoi démarrer un serveur local accessible en SSH, 
 
 ## Code des tests
 
-* Enfin, remplissez le fichier de vérification molecule :
+* Enfin, remplissez le fichier de vérification Molecule :
 
 ```yaml
 ---
+#
+# roles/a_tester/molecule/default/verify.yml
+#
 - name: Verify
   hosts: all
   gather_facts: false

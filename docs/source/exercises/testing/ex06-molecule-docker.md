@@ -3,7 +3,7 @@
 ```{admonition} À savoir
 :class: tip
 
-Pour réaliser vos tests de rôles Ansible avec Molecule et Docker, vous allez devoir comettre une hérésie. 
+Pour réaliser vos tests de rôles Ansible avec Molecule et Docker, vous allez devoir commettre une hérésie. 
 
 Vous trouverez dans tous les bon tutoriels sur Docker qu'il est contre-nature de faire démarrer un conteneur avec 
 systemd ou un autre service manager comme processus principal. C'est ce que vous allez devoir faire si vous testez des 
@@ -49,7 +49,7 @@ On peut voir que la commande d'init a créé un répertoire `molecule/default/` 
 |                |                                                                                                      |  
 | -------------- | ---------------------------------------------------------------------------------------------------- |
 | `molecule.yml` | fichier de configuration des environnements de test et des options molecule pour ce scénario.        |
-| `converge.yml` | playbook qui sera appliqué au environnements de test                                                 |
+| `converge.yml` | playbook qui sera appliqué aux environnements de test                                                |
 | `verify.yml`   | playbook qui sera joué pour vérifier que `converge.yml` a bien effectué les modifications attendues. |
 
 ## Configuration
