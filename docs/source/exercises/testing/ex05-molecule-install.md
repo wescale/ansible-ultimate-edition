@@ -13,6 +13,7 @@ Partant du principe que vous avez suivi les recommandations du chapitre sur [](/
 ```
 molecule==3.5.2
 molecule-docker
+molecule-goss
 ```
 
 ```{admonition} Note

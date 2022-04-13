@@ -9,25 +9,22 @@ Pour diminuer la phase de prérequis, l'exemple s'appuie également sur Docker, 
 * Avoir effectué l'[](ex05-molecule-install.md)
 * Avoir un [démon Docker installé](https://docs.docker.com/engine/install/) sur votre machine de travail.
 * Que votre [utilisateur de travail ait la permission de gérer Docker](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user) (pour éviter de devoir lancer vos tests en `root`).
-* Avoir un role à tester, pour l'exemple nous prendrons un rôle fictif placé dans le répertoire `roles/a_tester`.
 * Avoir installé Terraform (voir la [documentation officielle](https://www.terraform.io/downloads) ou la [proposition Ultimate](/howtos/terraform_install.md)).
 
 
 ## Initialisation
 
-Pour démarrer avec Molecule :
-
-* Placez vous à la racine du rôle que vous souhaitez tester :
+* Créez un rôle pour notre exercice
 
 ```bash session
-$ pwd 
-/home/user/ansible-workspaces/ultimate/training
+$ pwd
+/home/user/ansible-workspaces/ultimate-training
 
-$ cd roles/a_tester
+$ cd roles
 
-$ molecule init scenario --driver-name=delegated default
-INFO     Initializing new scenario default...
-INFO     Initialized scenario in /home/user/ansible-workspaces/ultimate/training/roles/a_tester/molecule/default successfully.
+$ molecule init role molecule_terraform_demo --driver-name delegated
+
+$ cd molecule_terraform_demo
 
 $ tree -a molecule/
 molecule/
@@ -61,7 +58,7 @@ Créez un répertoire pour hébergé le code Terraform :
 
 ```bash session
 $ pwd 
-/home/user/ansible-workspaces/ultimate/training/roles/a_tester
+/home/user/ansible-workspaces/ultimate/training/roles/molecule_terraform_demo
 
 $ mkdir -p molecule/default/terraform
 ```
@@ -72,7 +69,7 @@ Créez et remplissez les fichiers suivants (les chemins attendus sont en en-têt
 
 ```bash
 #
-# roles/a_tester/molecule/default/terraform/Dockerfile
+# roles/molecule_terraform_demo/molecule/default/terraform/Dockerfile
 # 
 ARG DEBIAN_TAG=11-slim
 FROM debian:$DEBIAN_TAG
@@ -105,7 +102,7 @@ ENTRYPOINT ["/lib/systemd/systemd"]
 
 ```hcl
 #
-# roles/a_tester/molecule/default/terraform/main.tf
+# roles/molecule_terraform_demo/molecule/default/terraform/main.tf
 # 
 terraform {
   required_providers {
@@ -160,7 +157,7 @@ output "port" { value = 22 }
 
 Maintenant que nous avons de quoi démarrer un serveur local accessible en SSH, il faut l'intégrer dans le cycle de gestion de Molecule.
 
-* Remplacez le contenu du fichier `roles/a_tester/molecule/default/create.yml` par :
+* Remplacez le contenu du fichier `roles/molecule_terraform_demo/molecule/default/create.yml` par :
 
 ```yaml
 ---
@@ -209,7 +206,7 @@ Maintenant que nous avons de quoi démarrer un serveur local accessible en SSH, 
             mode: 0600
 ```
 
-* Remplacez le contenu du fichier `roles/a_tester/molecule/default/destroy.yml` par :
+* Remplacez le contenu du fichier `roles/molecule_terraform_demo/molecule/default/destroy.yml` par :
 
 ```yaml
 ---
@@ -250,7 +247,7 @@ Maintenant que nous avons de quoi démarrer un serveur local accessible en SSH, 
 ```yaml
 ---
 #
-# roles/a_tester/tasks/main.yml
+# roles/molecule_terraform_demo/tasks/main.yml
 #
 - name: Installation de nginx
   apt:
@@ -271,7 +268,7 @@ Maintenant que nous avons de quoi démarrer un serveur local accessible en SSH, 
 ```yaml
 ---
 #
-# roles/a_tester/molecule/default/verify.yml
+# roles/molecule_terraform_demo/molecule/default/verify.yml
 #
 - name: Verify
   hosts: all
@@ -301,14 +298,14 @@ Tout est en place, vous pouvez maintenant lancer un test bout en bout avec les c
 
 ```bash session
 $ pwd
-/home/user/ansible-workspaces/ultimate/training/roles/a_tester
+/home/user/ansible-workspaces/ultimate/training/roles/molecule_terraform_demo
 
 $ molecule test
 INFO     default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
 INFO     Performing prerun...
 INFO     Set ANSIBLE_LIBRARY=/home/user/.cache/ansible-compat/9c82a6/modules:/home/user/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
 INFO     Set ANSIBLE_COLLECTIONS_PATHS=/home/user/.cache/ansible-compat/9c82a6/collections:/home/user/ansible-workspaces/ultimate/training/.direnv:/home/user/ansible-workspaces/ultimate/training/.direnv
-INFO     Set ANSIBLE_ROLES_PATH=/home/user/.cache/ansible-compat/9c82a6/roles:/home/user/ansible-workspaces/ultimate/training/roles/a_tester/roles:roles
+INFO     Set ANSIBLE_ROLES_PATH=/home/user/.cache/ansible-compat/9c82a6/roles:/home/user/ansible-workspaces/ultimate/training/roles/molecule_terraform_demo/roles:roles
 INFO     Running default > dependency
 WARNING  Skipping, missing the requirements file.
 WARNING  Skipping, missing the requirements file.

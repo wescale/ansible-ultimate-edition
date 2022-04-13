@@ -41,6 +41,7 @@ $ source ~/.bashrc
 pour l'intégrer à votre shell préféré.
 * Si vous êtes sous Windows, un WSL bien configuré doit vous permettre de faire ça 
 (n'hésitez pas à contribuer un guide en PR sur le projet).
+* Si vous êtes sous OSX, vous pourriez être intéressé par le guide [](/howtos/prepare_osx.md)
 ```
 
 ## Création du virtualenv

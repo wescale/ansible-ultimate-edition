@@ -9,5 +9,6 @@ afin de pouvoir valider la pertinence de votre code en continu.
 ex05-molecule-install.md
 ex06-molecule-docker.md
 ex07-molecule-terraform.md
+ex08-molecule-goss.md
 ```
 
