@@ -1,10 +1,10 @@
 # Packer
 
-Hashicorp Packer est un outil qui vous permet de créer des images de machine identiques pour différentes plateformes, à partir d'un modèle unique.
+Hashicorp Packer est un outil qui vous permet de créer des images de machines identiques pour différentes plateformes, à partir d'un modèle unique.
 
-Très utile pour le déploiement de masse, en adoptant le principe de "golden image". C'est à dire que l'on va construire l'image avec des composants testés et validés pour la mise en production, et cette image sera la source pour déployer toutes les machines virtuelles ou installer un ensemble de serveurs physiques.
+Packer permet d'adopter le principe de "golden image", c'est-à-dire où l'on va construire une image avec des composants testés et validés pour la mise en production. Cette image sera la source pour déployer toutes les machines virtuelles ou installer un ensemble de serveurs physiques.
 
-La force de Packer réside dans le fait qu'il soit relativement simple à utiliser, et possède de nombreuses extensions (dont un provisionner Ansible).
+La force de Packer réside dans le fait qu'il est relativement simple à utiliser et propose de nombreuses extensions (dont un provisionner Ansible).
 
 ```{admonition} Approfondir
 :class: seealso
@@ -15,23 +15,23 @@ La force de Packer réside dans le fait qu'il soit relativement simple à utilis
 
 ## Provisioner 
 
-Un provisioner utilise des logiciels intégrés et tiers pour installer et configurer l'image de la machine après le démarrage . Un provisionner prépare le système pour l'utilisation, avec par exemple :
+Un provisioner utilise des logiciels intégrés et tiers pour installer et configurer l'image de la machine après le démarrage. Un provisionner prépare le système pour l'utilisation, avec par exemple :
 
 * installation de paquets
 * compilation de modules du kernel
 * création d'utilisateurs
-* récupération de code sources ou exécutables
+* récupération de code source ou exécutables
 
 ### Provisioner Ansible
 
 Le provisioner Ansible utilise le mode push (le mode de fonctionnement natif) pour exécuter des playbooks Ansible.
-Le mode de fonctionnement implique que le code Ansible soit sur votre machine de travail, ou sur la machine de contrôle, afin de se connecter sur les machines cibles via SSH afin de receuillir et appliquer les changements.
+Le mode de fonctionnement implique que le code Ansible doit être sur votre machine de travail ou sur la machine de contrôle. Des connexions SSH seront alors établies vers les machines cibles via SSH afin de recueillir et appliquer les changements.
 
-Ce provisionner est très utile dans le cas où vous devez construire des images systèmes pour vos instances de machine virtuelles. 
+Ce provisionner est très utile dans le cas où vous devez construire des images système pour vos instances de machines virtuelles. 
 
-Prenons l'exemple avec la création d'une image ISO pour une machine virtuelle compatible Virtualbox :
+Prenons l'exemple de la création d'une image ISO pour une machine virtuelle compatible Virtualbox :
 
-On créer le fichier ansible-remote.json :
+On crée le fichier ansible-remote.json :
 
 ```json
 {
@@ -71,7 +71,7 @@ On crée le playbook :
 On valide que la configuration de Packer est correcte :
 
 ```sh
-$ packer validatevirtualbox-iso.json
+$ packer validate virtualbox-iso.json
 The configuration is valid.
 ```
 
@@ -90,7 +90,7 @@ Le résultat de ce build sera une image Docker Debian 11 avec Apache installé, 
 
 Le provisioner Ansible Local utilise le mode push. A l'inverse du mode pull, ce sont directement les machines cibles qui exécutent le code Ansible et appliquent les changements en local, sans passer par une connexion SSH. 
 
-Cela implique que Ansible soit pré-installé sur les machines cibles.
+Cela implique qu'Ansible soit pré-installé sur les machines cibles.
 
 ```json
 {

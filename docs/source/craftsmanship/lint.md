@@ -17,7 +17,7 @@ Partant du principe que vous avez suivi les recommandations du chapitre sur [](/
 ## Configuration
 
 Plutôt que de vous attaquer à la maîtrise des options CLI de `ansible-lint`, mieux vaut simplement rajouter un fichier de 
-de configuration `.ansible-lint`à la racine de votre projet. L'exemple donné si dessous peut convenir pour un grand nombre de projets
+de configuration `.ansible-lint` à la racine de votre projet. L'exemple donné si dessous peut convenir pour un grand nombre de projets
 mais pensez à approfondir votre maîtrise de l'outil en allant creuser les possibilités par vous-même.
 
 ```yaml
@@ -42,11 +42,11 @@ parseable: true     # Utiliser un format parseable de rapport
 quiet: false        # Limiter le contenu du rapport à son strict minimum
 verbosity: 1        # Niveau de verbosité du rapport
 #
-# Oblige les variables de boucles à être nommées avec ce préfix, comme ceci :
+# Oblige les variables de boucles à être nommées avec ce préfixe, comme ceci :
 #
 #   - name: Exemple conforme
 #     debug:
-#       msg: "Élement courant {{ __current_name }}"
+#       msg: "Élément courant {{ __current_name }}"
 #     loop:
 #       - "premier"
 #       - "second"
@@ -55,31 +55,31 @@ verbosity: 1        # Niveau de verbosité du rapport
 #
 loop_var_prefix: "__current_"
 #
-# Active le set de règles par défaut
+# Active le jeu de règles par défaut
 #
 use_default_rules: true
 #
 # Ignore toutes les règles listées dans cette 'skip_list'
 #
 skip_list:
-  - fqcn-builtins   # Pas besoin de surcharger le code avec des noms de module complet quand il 
+  - fqcn-builtins   # Pas besoin de surcharger le code avec des noms de modules complets quand il 
                     # s'agit de 'ansible.builtin.*'
 
   - meta-no-info    # La plupart des projets internes n'ont pas besoin de renseigner un fichier
-                    # 'meta/main.yml' pour leur rôles. Á retirer si vous comptez publier.
+                    # 'meta/main.yml' pour leurs rôles. À retirer si vous comptez publier.
 #
 # Certaines règles ont un tag 'opt-in', elles ne sont pas activées à moins de les inclure
 # dans cette 'enable_list'
 #
 enable_list:
-  - no-log-password # Vérifie tant que possible que des passwords ne soient pas loggés
-  - no-same-owner   # Vérifie que les transfert de fichier mentionne 'owner' et 'group'
-  - yaml            # Intègre un rapport Yaml-Lint dans le rapport de Ansible-Lint
+  - no-log-password # Vérifie tant que possible que des passwords ne sont pas loggés
+  - no-same-owner   # Vérifie que les transfert de fichier mentionnent 'owner' et 'group'
+  - yaml            # Intègre un rapport YAML-Lint dans le rapport d'Ansible-Lint
 #
 # Règles à relever comme des Warning et non des Fautes
 #
 warn_list:
-  - git-latest      # Les usages du module 'git' doivent metionner la gitref ciblée.
+  - git-latest      # Les usages du module 'git' devraient mentionner la gitref ciblée.
   - experimental    # Relève les usages de modules Ansible marqués comme expérimentaux (par défaut)
 #
 # Désactive l'installation du requirements.yml
@@ -112,7 +112,7 @@ roles/rproxy/tasks/main.yml:20: unnamed-task All tasks should be named
 Finished with 51 failure(s), 27 warning(s) on 128 files.
 ```
 
-Il ne vous reste plus qu'à en faire l'intégration dans votre chaine de CI préférée pour avoir un contrôle de qualité en continue.
+Il ne vous reste plus qu'à en faire l'intégration dans votre chaine de CI préférée pour avoir un contrôle de qualité en continu.
 
 ```{admonition} Approfondir
 :class: seealso

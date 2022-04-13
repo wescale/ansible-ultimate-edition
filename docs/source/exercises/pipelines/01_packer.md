@@ -3,19 +3,19 @@
 ```{admonition} Objectif
 :class: hint
 
-Industrialiser la création des images des machines virtuelles EC2. 
+Industrialiser la création d'images de machines virtuelles EC2. 
 ```
 
 ```{admonition} Note
 :class: important
 
-Cet exercice a été validé sur Gitlab.com, le service SaaS de Gitlab. Il vous faut créer un compte gratuit sur sur gitlab.com en pré-requis, ou utiliser votre compte personnel si vous en possédez déjà un. 
+Cet exercice a été validé sur gitlab.com, le service SaaS de GitLab. Il vous faut créer un compte gratuit sur sur gitlab.com en pré-requis, ou utiliser votre compte personnel si vous en possédez déjà un. 
 
 ```
 
 Notre image doit comporter tout le nécessaire pour construire des [AMI AWS](https://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/AMIs.html). 
 
-Créer un projet Gitlab vierge. Ce projet comportera un fichier Packer, un playbook Ansilbe et son requirements.yml pour la gestion des dépendances?
+Créez un projet GitLab vierge. Ce projet comportera un fichier Packer, un playbook Ansible et son `requirements.yml` pour la gestion des dépendances.
 
 
 ## Fichier `quick-start.pkr.hcl`
@@ -24,7 +24,7 @@ Créer un projet Gitlab vierge. Ce projet comportera un fichier Packer, un playb
 :class: tip
 
 Le fichier de configuration Packer suivant fonctionne dans le cas où le VPC par défaut existe dans le compte AWS cible. 
-Si vous ne disposez pas de VPC par défaut utiliser le fichier de configuration n°2.
+Si vous ne disposez pas de VPC par défaut, utilisez le fichier de configuration n°2.
 ```
 
 * Exemple n°1 (VPC par défaut requis) :
@@ -61,7 +61,7 @@ build {
 ```{admonition} Choix du VPC
 :class: tip
 
-Le fichier de configuration Packer suivant fonctionne dans le cas où le VPC par défaut n'existe pas. Dans ce cas vous devez spécifier à Packer le VPC et le sous-réseau à utiliser.
+Le fichier de configuration Packer suivant fonctionne dans le cas où le VPC par défaut n'existe pas. Dans ce cas, vous devez spécifier à Packer le VPC et le sous-réseau à utiliser.
 ```
 
 * Exemple n°2
@@ -102,9 +102,9 @@ build {
 
 ## Fichiers Ansible
 
-Organiser les fichiers Ansible en suivant les bonnes pratiques présentées ici.
+Organisez les fichiers Ansible en suivant les bonnes pratiques présentées ici.
 
-Ajoutons le playbook *ansible/playbook.yml* suivant :
+Ajoutons le playbook `ansible/playbook.yml` suivant :
 
 ```yaml
 - hosts: "{{ target|default('all') }}"
@@ -115,8 +115,8 @@ Ajoutons le playbook *ansible/playbook.yml* suivant :
     - security
 ```
 
-Le rôle *ansible-role-security* est un rôle public qui permet de configurer et ajouter des paramètres de sécurité basiques.
- Ajoutons le rôle dans le fichier *ansible/requirements.yml* :
+Le rôle ̀`ansible-role-security` est un rôle public qui permet de configurer et ajouter des paramètres de sécurité basiques.
+ Ajoutons le rôle dans le fichier `ansible/requirements.yml` :
 
 ```yaml
 - src: https://github.com/geerlingguy/ansible-role-security.git
@@ -124,7 +124,7 @@ Le rôle *ansible-role-security* est un rôle public qui permet de configurer et
   version: "2.1.0"
 ```
 
-A ce stade vous devriez avoir l'arborescence suivante dans votre projet Gitlab :
+À ce stade vous devriez avoir l'arborescence suivante dans votre projet GitLab :
 ```sh
 .
 ├── README.md
@@ -138,11 +138,11 @@ A ce stade vous devriez avoir l'arborescence suivante dans votre projet Gitlab :
 
 ## Configuration Gitlab-CI
 
-Dans le menu *Settings* --> *CI/CD* déroulez la section *Variables* afin d'ajouter les variables d'environment suivantes :
+Dans le menu *Settings* --> *CI/CD* déroulez la section *Variables* afin d'ajouter les variables d'environnement suivantes :
 
-* AWS_ACCESS_KEY_ID
-* AWS_SECRET_ACCESS_KEY
-* AWS_DEFAULT_REGION
+* `AWS_ACCESS_KEY_ID`
+* `AWS_SECRET_ACCESS_KEY`
+* `AWS_DEFAULT_REGION`
 
 ```{admonition} Authentification AWS
 :class: important
@@ -150,8 +150,8 @@ Dans le menu *Settings* --> *CI/CD* déroulez la section *Variables* afin d'ajou
 [Pour plus d'informations au sujet des déploiements sur AWS depuis Gitlab](https://docs.gitlab.com/ee/ci/cloud_deployment/index.html#run-aws-commands-from-gitlab-cicd)
 ```
 
-Maintenant que les variables sont ajoutées il nous reste à définir les actions dans la pipeline.
-Pour cela il suffit d'ajouter un fichier *.gitlab-ci.yml* comme suit : 
+Maintenant que les variables sont ajoutées, il nous reste à définir les actions dans la pipeline.
+Pour cela il suffit d'ajouter un fichier `.gitlab-ci.yml` comme suit : 
 
 ```yaml
 # https://docs.gitlab.com/ee/development/cicd/templates.html
@@ -195,8 +195,8 @@ On utilise une image Docker qui contient tout le nécessaire dont Packer, Ansibl
 
 ## Ligne d'arrivée
 
-Féliciations vous venez de configurer votre première chaîne d'intégration et de déploiment continue pour la construction des 
+Féliciations, vous venez de configurer votre première chaîne d'intégration et de déploiement continus pour la construction des 
 AMI AWS via Packer et Ansible ! 
 
-Mais attention, il reste encore du chemin avant d'aller en production ! En effet nous avons posé les bases, nous irons 
+Mais attention, il reste encore du chemin avant d'aller en production ! En effet, nous avons posé les bases, nous irons 
 plus loin dans une prochaine section. 

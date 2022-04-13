@@ -37,7 +37,7 @@ roles/a_tester/
 
 ## Squelette sur mesure
 
-Le squelette de base de la commande `ansible-galaxy` n'est pas forcément adapté à vos usages. Aucun directive claire 
+Le squelette de base de la commande `ansible-galaxy` n'est pas forcément adapté à vos usages. Aucune directive claire 
 n'est fournie dans la documentation officielle pour l'utilisation du contenu du répertoire `tests/` et tout le monde ne base pas sa CI sur Travis...
 
 
