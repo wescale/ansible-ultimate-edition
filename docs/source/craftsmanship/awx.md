@@ -151,3 +151,9 @@ awx job_templates launch 'Example Job Template' --monitor -f human
 * [Documentation AWX CLI - Examples](https://docs.ansible.com/ansible-tower/latest/html/towercli/examples.html)
 
 ```
+
+
+## Démo
+
+Une instance de démonstration est disponible à cette adresse : https://demo.recordsansible.org 
+
