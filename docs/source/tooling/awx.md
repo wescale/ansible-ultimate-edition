@@ -1,12 +1,10 @@
 # AWX
 
-
 AWX permet de gérer l'execution de vos playbooks de façon avancée. En effet il est possible de plannifier leur exécution dans le temps, ainsi que de centraliser la gestion des inventaires.
 
 En plus de son interface graphique, AWX propose une API ! Et c'est là que ça deviens intéressant. Cela vous permet d'intégrer des projets entiers à n'importe quelle application ou sein de votre SI.
 
 AWX gère tout le nécessaire à l'exécution et la gestion de vos rôles, collections ou playbooks Ansible : clés SSH, identités externes, synchronisation projets GIT, configuration des modules Ansible, etc. 
-
 
 
 ```{admonition} Approfondir
@@ -145,15 +143,6 @@ awx job_templates launch 'Example Job Template' --monitor -f human
 ```{admonition} Approfondir
 :class: seealso
 
-
 * [Documentation AWX CLI](https://docs.ansible.com/ansible-tower/latest/html/towercli/reference.html#awx-inventory-create)
-
 * [Documentation AWX CLI - Examples](https://docs.ansible.com/ansible-tower/latest/html/towercli/examples.html)
-
 ```
-
-
-## Démo
-
-Une instance de démonstration est disponible à cette adresse : https://demo.recordsansible.org 
-

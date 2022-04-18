@@ -1,0 +1,188 @@
+# Module
+
+Tous les modules que vous développez doivent se trouver au sein d'une collection, cela facilitera la diffusion, que ce soit
+en au sein de la communauté ou pour vos projets d'entreprise.
+
+Les modules custom que vous développez doivent se trouver dans le répertoire `plugins/modules` pour être retrouvés
+à l'installation de la collection en dépendances d'un projet.
+
+Le [guide officiel de développement de module](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html) est très fourni sur le sujet.
+
+## Initialisation
+
+En phase de développement, vous devez indiquer à Ansible où trouvez vos modules en cours de développement.
+
+* Ajoutez ceci à votre `.envrc`
+
+```bash
+export ANSIBLE_LIBRARY="${PWD}/plugins/modules:${ANSIBLE_LIBRARY}"
+```
+
+## Exemple fonctionnel
+
+Collez ceci dans le fichier `plugins/modules/hello.py`
+
+```python
+#!/usr/bin/python
+
+from __future__ import (absolute_import, division, print_function)
+__metaclass__ = type
+
+DOCUMENTATION = r'''
+---
+module: hello
+
+short_description: Module de demonstration
+
+# If this is part of a collection, you need to use semantic versioning,
+# i.e. the version is of the form "2.5.0" and not "2.4".
+version_added: "1.0.0"
+
+description: This is my longer description explaining my test module.
+
+options:
+    name:
+        description: This is the message to send to the test module.
+        required: true
+        type: str
+    new:
+        description:
+            - Control to demo if the result of this module is changed or not.
+            - Parameter description can be a list as well.
+        required: false
+        type: bool
+# Specify this value according to your collection
+# in format of namespace.collection.doc_fragment_name
+extends_documentation_fragment:
+    - my_namespace.my_collection.my_doc_fragment_name
+
+author:
+    - Your Name (@yourGitHubHandle)
+'''
+
+EXAMPLES = r'''
+# Pass in a message
+- name: Test with a message
+  my_namespace.my_collection.my_test:
+    name: hello world
+
+# pass in a message and have changed true
+- name: Test with a message and changed output
+  my_namespace.my_collection.my_test:
+    name: hello world
+    new: true
+
+# fail the module
+- name: Test failure of the module
+  my_namespace.my_collection.my_test:
+    name: fail me
+'''
+
+RETURN = r'''
+# These are examples of possible return values, and in general should use other names for return values.
+message:
+    description: The output message that the test module generates.
+    type: str
+    returned: always
+    sample: 'goodbye'
+'''
+
+from ansible.module_utils.basic import AnsibleModule
+
+def run_module():
+    # define available arguments/parameters a user can pass to the module
+    module_args =dict(
+        world=dict(type='str', required=True)
+    ) 
+
+    # seed the result dict in the object
+    # we primarily care about changed and state
+    # changed is if this module effectively modified the target
+    # state will include any data that you want your module to pass back
+    # for consumption, for example, in a subsequent task
+    result = dict(
+        changed=False,
+        ansible_facts=dict(),
+    )
+
+    # the AnsibleModule object will be our abstraction working with Ansible
+    # this includes instantiation, a couple of common attr would be the
+    # args/params passed to the execution, as well as if the module
+    # supports check mode
+    module = AnsibleModule(
+        argument_spec=module_args,
+        supports_check_mode=True
+    )
+
+    # if the user is working with this module in only check mode we do not
+    # want to make any changes to the environment, just return the current
+    # state with no modifications
+    if module.check_mode:
+        module.exit_json(**result)
+
+    # manipulate or modify the state as needed (this is going to be the
+    # part where your module will do what it needs to do)
+    result['message'] = "Hello {}".format(module.params['world'])
+    result['changed'] = True
+    
+    # in the event of a successful module execution, you will want to
+    # simple AnsibleModule.exit_json(), passing the key/value results
+    module.exit_json(**result) 
+
+
+def main():
+    run_module()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+* Collez ceci dans un playbook en `playbooks/hello.yml`
+
+```yaml
+---
+- hosts: localhost
+  become: no
+  gather_facts: false
+
+  tasks: 
+    - hello:
+        world: Arrakis
+      register: hello_res
+
+    - debug:
+        var: hello_res
+```
+
+Vous pouvez maintenant utiliser votre module de démo via la commande :
+
+```bash session
+$ ansible-playbook playbooks/hello.yml
+
+PLAY [localhost] ************************************************************************************************************************************************************
+
+TASK [hello] ****************************************************************************************************************************************************************
+mardi 19 avril 2022  01:27:13 +0200 (0:00:00.006)       0:00:00.006 *********** 
+changed: [localhost]
+
+TASK [debug] ****************************************************************************************************************************************************************
+mardi 19 avril 2022  01:27:14 +0200 (0:00:00.161)       0:00:00.167 *********** 
+ok: [localhost] => {
+    "hello_res": {
+        "ansible_facts": {},
+        "changed": true,
+        "failed": false,
+        "message": "Hello Arrakis"
+    }
+}
+
+PLAY RECAP ******************************************************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Playbook run took 0 days, 0 hours, 0 minutes, 0 seconds
+mardi 19 avril 2022  01:27:14 +0200 (0:00:00.010)       0:00:00.177 *********** 
+=============================================================================== 
+hello ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.16s
+debug ---------------------------------------------------------------------------------------------------------------------------------------------------------------- 0.01s
+```

@@ -5,8 +5,5 @@
 
 lint.md
 molecule.md
-packer.md
-ara.md
-awx.md
 ```
 

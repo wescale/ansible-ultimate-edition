@@ -5,5 +5,6 @@
 
 inventory.md
 workspaces.md
+galaxy_release.md
 roles/__index.md
 ```

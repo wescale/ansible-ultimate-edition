@@ -1,17 +1,10 @@
-# Ara
+# ARA
 
 Ara est un callback module qui enregistre toute la sortie d'Ansible. Cela en fait un outil assez pratique 
 pour investiguer et conserver une traçabilité des exécutions de vos playbooks.
 
 Pour cela vous avez à votre disposition une interface en ligne de commande et une interface web.
 
-
-```{admonition} Approfondir
-:class: seealso
-
-* [Documentation Ara](https://ara.readthedocs.io/en/latest/getting-started.html)
-* [Documentation Ara - Github](https://github.com/ansible-community/ara)
-```
 
 
 ## Installation 
@@ -53,6 +46,9 @@ $ ara-manage runserver
 * [Documentation Ara - CLI](https://ara.readthedocs.io/en/latest/cli.html#ara)
 ```
 
+## Démo
+
+Une instance de démonstration est disponible à cette adresse : [https://demo.recordsansible.org](https://demo.recordsansible.org)
 
 ## Pour aller plus loin
 
@@ -81,8 +77,15 @@ export ARA_API_CLIENT="http"
 export ARA_API_SERVER="http://127.0.0.1:8000"
 ```
 
+----
+
+
+
 ```{admonition} Approfondir
 :class: seealso
 
+* [Documentation Ara](https://ara.readthedocs.io/en/latest/getting-started.html)
+* [Documentation Ara - Github](https://github.com/ansible-community/ara)
 * [Démonstration Ara interface web](https://demo.recordsansible.org)
 ```
+
