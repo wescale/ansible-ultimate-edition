@@ -9,8 +9,8 @@ Pour cela vous avez à votre disposition une interface en ligne de commande et u
 
 ## Installation 
 
-Pour installer Ara rien de plus simple ! Clonez ce projet GIT : https://github.com/gloterman/ansible-ara-quickstart 
-ou suivez le guide de départ de la documentation officielle : https://ara.readthedocs.io/en/latest/getting-started.html
+Pour installer Ara rien de plus simple ! Clonez ce projet GIT : [https://github.com/gloterman/ansible-ara-quickstart](https://github.com/gloterman/ansible-ara-quickstart)
+ou suivez le guide de départ de la [documentation officielle](https://ara.readthedocs.io/en/latest/getting-started.html)
 
 Une fois Ara activé, et votre premier playbook exécuté, toutes les informations seront stockées dans une 
 base Sqlite (par défaut). Voici quelques commandes pour afficher ces informations :
