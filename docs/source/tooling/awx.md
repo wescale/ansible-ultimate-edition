@@ -62,16 +62,14 @@ docker exec tools_awx_1 awx-manage create_preload_data
 L'interface web est disponible à cette adresse : 
 https://localhost:8043/#/home
 
-L'API est disponible à cette adresse :
-
-https://localhost:8043/api/v2
+L'API est disponible à cette adresse : [https://localhost:8043/api/v2](https://localhost:8043/api/v2)
 
 
 
 ```{admonition} Approfondir
 :class: seealso
 
-* [Documentation AWX - Installation via docker-compose](https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md
+* [Documentation AWX - Installation via docker-compose](https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md)
 * [Pour aller plus loin - Intégration avec ARA](https://ara.recordsansible.org/blog/recording-ansible-playbooks-from-awx-with-ara/)
 ```
 
