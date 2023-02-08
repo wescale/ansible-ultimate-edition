@@ -68,6 +68,7 @@ répond est situé dans le virtualenv créé juste avant.
 ```shell session
 which ansible
 ```
+
 ```
 /home/user/ansible-workspaces/.direnv/python-3.9.2/bin/ansible
 ```
@@ -75,6 +76,7 @@ which ansible
 ```shell session
 ansible --version
 ```
+
 ```
 ansible [core 2.14.2]
   config file = None
@@ -84,6 +86,6 @@ ansible [core 2.14.2]
   executable location = /home/amaury/ansible-workspaces/.direnv/python-3.9.2/bin/ansible
   python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110] (/home/amaury/ansible-workspaces/.direnv/python-3.9.2/bin/python3)
   jinja version = 3.1.2
-  libyaml = True```
+  libyaml = True
 ```
 
