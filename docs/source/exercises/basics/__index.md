@@ -4,6 +4,12 @@ Premier chapitre des exercices où l'on vient configurer le poste de travail pou
 meilleures conditions pour travailler. Ces exercices s'enchaînent et se complètent pour vous apprendre
 une méthodologie de travail avec Ansible.
 
+## Prérequis
+
+* [Préparation](/exercises/prerequisites.md)
+
+## Exercices
+
 ```{toctree}
 :maxdepth: 1
 

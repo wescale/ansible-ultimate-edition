@@ -8,17 +8,8 @@ Création d'un projet Ansible vierge.
 
 ## Prérequis
 
-Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail :
-
-* [le premier exercice](ex00-install.md) ;
-* git.
-
-Pour notre cas de référence (Debian Bullseye), atteindre ces prérequis passe par le lancement des commandes suivantes :
-
-```shell session
-$ sudo apt update 
-$ sudo apt install git -y
-```
+* [Préparation](/exercises/prerequisites.md)
+* [Installer Ansible](ex00-install.md) ;
 
 ## Création de la structure
 
