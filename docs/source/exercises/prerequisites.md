@@ -9,22 +9,20 @@ référence sur Debian 11 n’est pas tiré de nulle part : cette configuration 
 nombreux professionnels de gagner leur vie en étant productif au quotidien (Debian sur laptop, 
 aujourd’hui ce n’est pas un problème).
 
-## Freestyling
+## Figures libres
 
 Pour réaliser les exercices qui vont suivre, il faut se procurer :
 
 * un système Debian stable (11 à l'heure de la dernière modification)
 * un terminal branché dessus avec un shell Bash
 * un environnement de développement intégré ([IDE](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement))
-capable d'éditer des fichiers de votre système Debian ([LunarVim](https://www.lunarvim.org/docs/installation), [VSCodium](https://vscodium.com/#install))
+capable d'éditer les fichiers de votre système Debian ([LunarVim](https://www.lunarvim.org/docs/installation), [VSCodium](https://vscodium.com/#install))
 
 ...tous les coups sont permis pour atteindre ces premiers critères.
 
 ```{admonition} Nota Bene
 :class: tip
 
-* Si vous n'utilisez pas Bash comme shell par défaut, reportez vous à la [doc de direnv](https://direnv.net/docs/hook.html)
-pour l'intégrer à votre shell préféré.
 * Si vous êtes sous Windows, un WSL bien configuré doit vous permettre de faire ça 
 (n'hésitez pas à contribuer un guide en PR sur le projet).
 * Si vous êtes sous OSX, vous pourriez être intéressé par le guide [](/howtos/prepare_osx.md)
@@ -32,9 +30,9 @@ pour l'intégrer à votre shell préféré.
 
 ## Figures imposées
 
-Une fois votre système prêt, il faut y ajouter plusieurs paquets pour pouvoir travailler:
+Une fois votre système prêt, il faut y ajouter plusieurs paquets pour pouvoir travailler :
 
-```shell session
+```
 echo
 echo "--- Installation des paquets apt nécessaires"
 sudo apt update 

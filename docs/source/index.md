@@ -13,5 +13,6 @@ best_practices/__index.md
 tooling/__index.md
 dev/__index.md
 howtos/__index.md
+exercises/__index.md
 credits.md
 ```
