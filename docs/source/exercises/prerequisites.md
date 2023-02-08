@@ -16,14 +16,13 @@ Pour réaliser les exercices qui vont suivre, il faut se procurer :
 * un système Debian stable (11 à l'heure de la dernière modification)
 * un terminal branché dessus avec un shell Bash
 * un environnement de développement intégré ([IDE](https://fr.wikipedia.org/wiki/Environnement_de_d%C3%A9veloppement))
-capable d'éditer des fichiers votre système Debian ([LunarVim](https://www.lunarvim.org/docs/installation), [VSCodium](https://vscodium.com/#install))
+capable d'éditer des fichiers de votre système Debian ([LunarVim](https://www.lunarvim.org/docs/installation), [VSCodium](https://vscodium.com/#install))
 
 ...tous les coups sont permis pour atteindre ces premiers critères.
 
 ```{admonition} Nota Bene
 :class: tip
 
-* Si vous êtes sous Ubuntu, les commandes sont valides également.
 * Si vous n'utilisez pas Bash comme shell par défaut, reportez vous à la [doc de direnv](https://direnv.net/docs/hook.html)
 pour l'intégrer à votre shell préféré.
 * Si vous êtes sous Windows, un WSL bien configuré doit vous permettre de faire ça 
@@ -36,15 +35,15 @@ pour l'intégrer à votre shell préféré.
 Une fois votre système prêt, il faut y ajouter plusieurs paquets pour pouvoir travailler:
 
 ```shell session
+echo
 echo "--- Installation des paquets apt nécessaires"
 sudo apt update 
-sudo apt-get install python3 python3-dev python3-venv python3-pip git direnv make bash curl
+sudo apt-get install python3 python3-dev python3-venv python3-pip git direnv make bash curl lsb-release
 echo "--- Branchement de direnv dans la configuration bash de l'utilisateur"
 echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
 echo "--- Rechargement de la configuration bash de l'utilisateur"
 source ~/.bashrc
 ```
-
 
 ```{admonition} Note
 :class: important
@@ -53,5 +52,4 @@ Il vous faudra également un démon Docker pour pouvoir exécuter les exercices 
 automatisés de code Ansible : 
 * [Guide officiel d'installation de Docker](https://docs.docker.com/engine/install/debian/).
 ```
-
 

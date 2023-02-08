@@ -8,13 +8,12 @@ Ajouter un host à l'inventaire et configurer le projet pour pouvoir s'y connect
 
 ## Prérequis
 
-Pour que tout se passe comme prévu, vous aurez besoin que soient installés sur votre machine de travail:
-
-* [Les exercices 00 à 03](__index.md)
-
-Il vous faudra en supplément :
-
-* un serveur auquel vous connecter en SSH
+* [Préparation](/exercises/prerequisites.md)
+* [Installer Ansible](ex00-install.md)
+* [Créer un projet](ex01-project.md)
+* [Configurer un projet](ex02-config.md)
+* [Gérer les dépendances](ex03-dependencies.md)
+* un serveur (autre que celui qui contient le projet) auquel vous connecter en SSH
 
 Malheureusement il est complexe de vous en fournir un pour les exercices. Pour l'exercice, nous prendrons un host
 fictif, à vous de vous entraîner sur un serveur de test.

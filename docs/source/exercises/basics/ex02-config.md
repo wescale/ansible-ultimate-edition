@@ -10,7 +10,7 @@ Configurer un projet pour pouvoir travailler proprement avec.
 
 * [Préparation](/exercises/prerequisites.md)
 * [Installer Ansible](ex00-install.md)
-* [Créer un projet](ex02-config.md)
+* [Créer un projet](ex01-project.md)
 
 ## Création d'un virtualenv dédié
 
