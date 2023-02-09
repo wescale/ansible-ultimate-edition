@@ -52,6 +52,8 @@ cat >> .envrc <<EOF
 export DIRENV_TMP_DIR="\${PWD}/.direnv"
 export ANSIBLE_STDOUT_CALLBACK="ansible.posix.debug"
 export ANSIBLE_FORKS="10"
+export ANSIBLE_INVENTORY="inventory"
+export ANSIBLE_SSH_ARGS="-F ssh.cfg"
 export ANSIBLE_ROLES_PATH="\${DIRENV_TMP_DIR}/ansible_roles:\${PWD}/roles"
 export ANSIBLE_COLLECTIONS_PATHS="\${DIRENV_TMP_DIR}"
 export ANSIBLE_CALLBACKS_ENABLED="timer,profile_tasks"

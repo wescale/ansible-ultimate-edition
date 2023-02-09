@@ -17,7 +17,7 @@ Ajouter des dépendances Python et Ansible à un projet.
 
 Pour éviter des problèmes communs de construction de package Pip, commencez par lancer :
 
-```bash session
+```
 pip3 install -U pip wheel setuptools --no-cache-dir 
 ```
 
@@ -26,12 +26,12 @@ pip3 install -U pip wheel setuptools --no-cache-dir
 Créez un fichier `requirements.txt` avec notre version préférée d'Ansible pour le projet.
 
 ```bash session
-echo 'ansible-core==2.12.4' >> requirements.txt
+echo 'ansible-core==2.14.2' >> requirements.txt
 ```
 
 Une fois ceci fait, nous pouvons rapatrier les dépendances listées avec la commande :
 
-```bash session
+```
 pip3 install -U --no-cache-dir -r requirements.txt 
 ```
 
@@ -63,7 +63,7 @@ Vous pouvez observer que la collection et le rôle sont installés dans un sous-
 
 ## Création d'un Makefile basique pour simplifier la mise à jour des dépendances
 
-Comme nous sommes des gens d'automatisation, la complexité des commandes précédente 
+Comme nous sommes des gens d'automatisation, la complexité des commandes précédentes 
 sera mieux placée dans un fichier `Makefile` :
 
 ```Makefile
@@ -88,7 +88,7 @@ prepare:
 
 Vous pouvez relancer la procédure complète de rapatriement des dépendances avec la commande :
 
-```bash session
+```
 make prepare
 ```
 

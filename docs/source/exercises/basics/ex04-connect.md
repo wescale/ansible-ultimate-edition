@@ -3,7 +3,8 @@
 ```{admonition} Objectif
 :class: hint
 
-Ajouter un host à l'inventaire et configurer le projet pour pouvoir s'y connecter avec Ansible.
+* Créer un répertoire de pilotage pour un host
+* Configurer le dépôt local pour gérer la machine avec Ansible
 ```
 
 ## Prérequis
@@ -14,24 +15,35 @@ Ajouter un host à l'inventaire et configurer le projet pour pouvoir s'y connect
 * [Configurer un projet](ex02-config.md)
 * [Gérer les dépendances](ex03-dependencies.md)
 * un serveur (autre que celui qui contient le projet) auquel vous connecter en SSH
+* les accès de base de connexion au serveur (login et clé privée de connexion)
 
-Malheureusement il est complexe de vous en fournir un pour les exercices. Pour l'exercice, nous prendrons un host
-fictif, à vous de vous entraîner sur un serveur de test.
+
+```{admonition} Nota Bene
+:class: note
+
+Pour l'exercice, nous prendrons un host fictif que nous nommerons `ultimate-server`, charge à vous de 
+créer un serveur de test.
+```
 
 ## Configuration SSH
 
-Remplissez un fichier `ssh.cfg` en choisissant un label pour le serveur puis en renseignant les paramètres de connexion.
+* Créer un répertoire pour les variables dédiées au serveur :
 
-Un exemple pourrait ressembler à ceci :
+```
+mkdir -p inventories/ultimate/host_vars/ultimate-server/secrets
+```
 
-```bash
+* Deposer la clé privée de connexion dans votre répertoire de travail : `inventories/ultimate/host_vars/ultimate-server/secrets/private.key`
+* Remplissez un fichier `inventories/ultimate/ssh.cfg` avec les paramètres de connexion au serveur.
+
+```
 #
-# ssh.cfg
+# inventories/ultimate/ssh.cfg
 #
 Host ultimate-server
-  Hostname 51.15.202.92
-  User root
-  IdentityFile  group_vars/ultimate_platform/secrets/ultimate.key
+  Hostname <IP ADDRESS>
+  User <DEFAULT USER>
+  IdentityFile host_vars/ultimate-server/secrets/private.key
   ControlMaster   auto
   ControlPath     ~/.ssh/mux-%r@%h:%p
   ControlPersist  15m
@@ -41,29 +53,37 @@ Host ultimate-server
 
 L'essentiel pour savoir si vous avez atteint la fin de cette étape est de valider la connexion en lançant :
 
-```bash session
-$ ssh -F ssh.cfg ultimate-server
+```
+cd inventories/ultimate
+ssh -F ssh.cfg ultimate-server
 ```
 
 ## Ajout à l'inventaire
 
 Une fois votre connexion SSH validée, ajoutez le label de votre serveur à l'inventaire (le fichier `inventory`) :
 
-```bash
+```
+#
+# inventories/ultimate/inventory
+#
 ultimate-server
 ```
 
 Vérifiez que votre configuration Ansible pointe bien sur cet inventaire :
 
-```bash session
-$ env | grep ANSIBLE_INVENTORY
+```
+env | grep ANSIBLE_INVENTORY
+```
+```
 ANSIBLE_INVENTORY=inventory
 ```
 
 Vérifiez que votre configuration Ansible prend en compte votre fichier de configuration SSH :
 
-```bash session
-$ env | grep ANSIBLE_SSH_ARGS
+```
+env | grep ANSIBLE_SSH_ARGS
+```
+```
 ANSIBLE_SSH_ARGS=-F ssh.cfg
 ```
 
@@ -74,8 +94,10 @@ Si ce n'est pas le cas, ajustez votre fichier `.envrc` sans oublier de lancer un
 
 Lancez la commande :
 
-```bash session
-$ ansible -m ping ultimate-server
+```
+ansible -m ping ultimate-server
+```
+```
 ultimate-server | SUCCESS => {
     "changed": false,
     "ping": "pong"
@@ -84,7 +106,6 @@ ultimate-server | SUCCESS => {
 
 Ce `ping` Ansible permet de valider que vous avez bien une connexion SSH valide et qu'il y a au moins une version de Python
 sur le serveur auquel on se connecte.
-
 
 ## Ligne d'arrivée
 
