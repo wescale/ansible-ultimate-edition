@@ -6,7 +6,7 @@ une méthodologie de travail avec Ansible.
 
 ## Prérequis
 
-* [Préparation](/exercises/prerequisites.md)
+* [](/exercises/prerequisites.md)
 
 ## Exercices
 
