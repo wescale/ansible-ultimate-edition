@@ -32,15 +32,11 @@ capable d'éditer les fichiers de votre système Debian ([LunarVim](https://www.
 
 Une fois votre système prêt, il faut y ajouter plusieurs paquets pour pouvoir travailler :
 
-```
-echo
-echo "--- Installation des paquets apt nécessaires"
-sudo apt update 
-sudo apt-get install python3 python3-dev python3-venv python3-pip git direnv make bash curl lsb-release
-echo "--- Branchement de direnv dans la configuration bash de l'utilisateur"
-echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
-echo "--- Rechargement de la configuration bash de l'utilisateur"
-source ~/.bashrc
+```{code-block}
+> sudo apt update 
+> sudo apt-get install python3 python3-dev python3-venv python3-pip git direnv make bash curl lsb-release
+> grep -q 'eval "$(direnv hook bash)"' ~/.bashrc || echo 'eval "$(direnv hook bash)"' >> ~/.bashrc
+> source ~/.bashrc
 ```
 
 ```{admonition} Note

@@ -18,28 +18,36 @@ Ajouter des dépendances Python et Ansible à un projet.
 Pour éviter des problèmes communs de construction de package Pip, commencez par lancer :
 
 ```
-pip3 install -U pip wheel setuptools --no-cache-dir 
+> pip3 install -U pip wheel setuptools --no-cache-dir 
 ```
 
 ## Création d'un fichier de requirements Pip
 
 Créez un fichier `requirements.txt` avec notre version préférée d'Ansible pour le projet.
 
-```bash session
-echo 'ansible-core==2.14.2' >> requirements.txt
+```{code-block}
+:linenos:
+#
+# requirements.txt
+#
+ansible-core==2.14.2
 ```
 
 Une fois ceci fait, nous pouvons rapatrier les dépendances listées avec la commande :
 
-```
-pip3 install -U --no-cache-dir -r requirements.txt 
+```{code-block}
+> pip3 install -U --no-cache-dir -r requirements.txt 
 ```
 
 ## Création d'un fichier de requirements Ansible Galaxy
 
 Créez un fichier `requirements.yml` avec un rôle et une collection tirés de la plateforme centrale Ansible Galaxy :
 
-```yaml
+```{code-block}
+:linenos:
+#
+# requirements.yml
+#
 ---
 # Install roles from Ansible Galaxy.
 roles:
@@ -55,8 +63,8 @@ collections:
 
 Une fois ceci fait, nous pouvons rapatrier les dépendances listées avec la commande :
 
-```bash session
-ansible-galaxy install -fr requirements.yml
+```{code-block}
+> ansible-galaxy install -fr requirements.yml
 ```
 
 Vous pouvez observer que la collection et le rôle sont installés dans un sous-répertoire de `.direnv`.
@@ -66,7 +74,8 @@ Vous pouvez observer que la collection et le rôle sont installés dans un sous-
 Comme nous sommes des gens d'automatisation, la complexité des commandes précédentes 
 sera mieux placée dans un fichier `Makefile` :
 
-```Makefile
+```{code-block}
+:linenos:
 .PHONY: prepare
 prepare-desc = "Prepare local workspace"
 prepare:
@@ -89,7 +98,7 @@ prepare:
 Vous pouvez relancer la procédure complète de rapatriement des dépendances avec la commande :
 
 ```
-make prepare
+> make prepare
 ```
 
 ## Ligne d'arrivée

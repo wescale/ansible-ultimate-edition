@@ -16,45 +16,44 @@ Création d'un projet Ansible vierge.
 Pour disposer de notre installation locale d'Ansible, nous devons nous placer dans le répertoire
 contenant le virtualenv géré par `direnv` :
 
-```shell session
-cd ~/ansible-workspaces
+```{code-block}
+> cd ~/ansible-workspaces
 ```
 
 Puis, nous pouvons nous appuyer sur la commande `ansible-galaxy` pour initier la structure de notre projet :
 
-```bash session
-ansible-galaxy collection init ultimate.training
-```
-```
+```{code-block}
+> ansible-galaxy collection init ultimate.training
 - Collection ultimate.training was created successfully
 ```
+
 ----
-```bash session
-cd ultimate/training
-tree -a
-```
-```
+
+
+```{code-block}
+> cd ultimate/training
+> tree -a
 .
 ├── docs
 ├── galaxy.yml
+├── meta
+│   └── runtime.yml
 ├── plugins
 │   └── README.md
 ├── README.md
 └── roles
 
-3 directories, 3 files
+4 directories, 4 files
 ```
 
 On peut voir qu'`ansible-galaxy` a créé le minimum. À nous de remplir le reste pour obtenir un espace de 
 travail complet.
 
 
-```shell session
-mkdir -p playbooks/group_vars inventories/
-touch playbooks/group_vars/all.yml inventories/.gitkeep roles/.gitkeep docs/.gitkeep
-tree -a
-```
-```
+```{code-block}
+> mkdir -p playbooks/group_vars inventories/
+> touch playbooks/group_vars/all.yml inventories/.gitkeep roles/.gitkeep docs/.gitkeep
+> tree -a
 .
 ├── docs
 │   └── .gitkeep
@@ -79,10 +78,10 @@ Nous avons maintenant un premier cadre de travail utile,
 nous pouvons l'encadrer par une gestion de version :
 
 
-```bash session
-git init
-git add .
-git commit -m "ultimate init"
+```{code-block}
+> git init
+> git add .
+> git commit -m "ultimate init"
 ```
 
 ## Ligne d'arrivée

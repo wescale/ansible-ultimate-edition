@@ -1,7 +1,0 @@
-collections:
-  - name: community.general
-    version: 4.6.1
-  - name: community.crypto
-  - name: ansible.utils
-  - name: ansible.netcommon
-  - name: ansible.posix

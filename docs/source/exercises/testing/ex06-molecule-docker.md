@@ -12,7 +12,7 @@ rôles qui mettent en place des services systèmes (spoiler : c'est le cas 90% d
 
 ## Prérequis 
 
-* Avoir effectué l'[](ex05-molecule-install.md)
+* [](ex05-molecule-install.md)
 * Avoir un [démon Docker installé](https://docs.docker.com/engine/install/) sur votre machine de travail.
 * Que votre [utilisateur de travail ait la permission de gérer Docker](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user) (pour éviter de devoir lancer vos tests en `root`).
 * Avoir un role à tester, pour l'exemple nous prendrons un rôle fictif placé dans le répertoire `roles/molecule_docker_demo`.
